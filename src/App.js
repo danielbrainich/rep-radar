@@ -1,9 +1,9 @@
 import './App.css';
-import GetReps from './GetReps'
+import GetOfficialsByAddressForm from './GetOfficialsByAddressForm'
 
 function App() {
   return (
-    <GetReps />
+    <GetOfficialsByAddressForm />
   );
 }
 
