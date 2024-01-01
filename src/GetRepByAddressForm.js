@@ -1,31 +1,27 @@
 import { useState } from 'react';
-import { getCivicInfoOfficialsByAddress, getOpenSecretsCandidateIds } from './api'
+import { getCivicInfoRepByAddress, getOpenSecretsRepId, getOpenSecretCandidatesInfo } from './api'
 
-function GetOfficialsByAddressForm() {
+function GetRepByAddressForm() {
 
     const [representative, setRepresentative] = useState({});
-    const [senator1, setSenator1] = useState({});
-    const [senator2, setSenator2] = useState({});
+    const [repOpenSecretsId, setRepOpenSecretsId] = useState({});
+    const [repContribData, setRepContribData] = useState({});
     const [formData, setFormData] = useState({
         zipCode: '',
     });
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        const data = await getCivicInfoOfficialsByAddress(formData.zipCode);
-        setRepresentative(data.representative);
-        setSenator1(data.senator1);
-        setSenator2(data.senator2);
 
-        const officialsIds = await getOpenSecretsCandidateIds(
-            data.state,
-            data.representative.name,
-            data.senator1.name,
-            data.senator2.name
-        );
+        const repData = await getCivicInfoRepByAddress(formData.zipCode);
+        setRepresentative(repData.representative);
 
-        console.log(officialsIds);
-    };
+        const repId = await getOpenSecretsRepId(repData.state, repData.representative.name);
+        setRepOpenSecretsId(repId)
+
+        const contribData = await getOpenSecretCandidatesInfo(repId);
+        setRepContribData(contribData);
+    }
 
     const handleZipCodeChange = (event) => {
         const value = event.target.value;
@@ -45,10 +41,9 @@ function GetOfficialsByAddressForm() {
             </form>
             <ul>
                 <li>Representative: {representative.name}</li>
-                <li>Senators: {senator1.name} and {senator2.name}</li>
             </ul>
         </>
     );
 };
 
-export default GetOfficialsByAddressForm;
+export default GetRepByAddressForm;
