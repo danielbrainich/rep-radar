@@ -39,6 +39,7 @@ const getCivicInfoOfficialsByAddress = async (zipCode) => {
             representative: data.officials[indexRepresentative],
             senator1: data.officials[indexSenator1],
             senator2: data.officials[indexSenator2],
+            state: data.normalizedInput.state,
         };
 
     } catch (error) {
@@ -47,36 +48,48 @@ const getCivicInfoOfficialsByAddress = async (zipCode) => {
             representative: {},
             senator1: {},
             senator2: {},
+            state: '',
         }
     }
 };
 
-const getOpenSecretsCandidateIds = async () => {
+const getOpenSecretsCandidateIds = async (officialsState, representativeName, senator1Name, senator2Name) => {
 
     const apiUrl = 'http://www.opensecrets.org/api/'
     const params = {
         method: 'getLegislators',
-        id: 'CA',
+        id: officialsState,
         apiKey: OPEN_SECRETS_API_KEY,
         output: 'json',
     }
 
-    const urlWithParams = `${apiUrl}?method=${params.method}&id=${params.id}&apikey=${params.apiKey}`;
+    const urlWithParams = `${apiUrl}?method=${params.method}&id=${params.id}&apikey=${params.apiKey}&output=${params.output}`;
+
     try {
         const response = await fetch(urlWithParams);
         if (!response.ok) {
             throw new Error(`HTTP error. Status: ${response.status}`);
         }
         const data = await response.json();
+        console.log(data.response.legislator);
+        // this returns json with information about every CA rep and senator.
 
-        console.log(data);
+        function getLegislatorIdFromName(data, name) {
+            for (let legislator of data) {
+                console.log(legislator['firstlast'])
+            }
+        }
+
+        getLegislatorIdFromName(data.response.legislator, 'Doug LaMalfa');
+
+        // trying to get this to give me the ID of the legislator name I pass in
 
     } catch (error) {
         console.error('Error fetching data:', error);
         return {
-            representativeId: {},
-            senator1Id: {},
-            senatorId: {},
+            representativeId: '',
+            senator1Id: '',
+            senator2Id: '',
         }
     }
 
