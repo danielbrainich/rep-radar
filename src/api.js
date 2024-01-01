@@ -71,18 +71,28 @@ const getOpenSecretsCandidateIds = async (officialsState, representativeName, se
             throw new Error(`HTTP error. Status: ${response.status}`);
         }
         const data = await response.json();
-        console.log(data.response.legislator);
-        // this returns json with information about every CA rep and senator.
 
         function getLegislatorIdFromName(data, name) {
             for (let legislator of data) {
-                console.log(legislator['firstlast'])
+                if (legislator['@attributes'].firstlast === name) {
+                    return {
+                        firstlast: legislator['@attributes'].firstlast,
+                        cid: legislator['@attributes'].cid,
+                    };
+                }
             }
+            return null;
         }
 
-        getLegislatorIdFromName(data.response.legislator, 'Doug LaMalfa');
+        const representativeId = getLegislatorIdFromName(data.response.legislator, representativeName);
+        const senator1Id = getLegislatorIdFromName(data.response.legislator, senator1Name);
+        const senator2Id = getLegislatorIdFromName(data.response.legislator, senator2Name);
 
-        // trying to get this to give me the ID of the legislator name I pass in
+        return {
+            a: representativeId,
+            b: senator1Id,
+            c: senator2Id,
+        };
 
     } catch (error) {
         console.error('Error fetching data:', error);

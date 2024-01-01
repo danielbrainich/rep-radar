@@ -6,9 +6,6 @@ function GetOfficialsByAddressForm() {
     const [representative, setRepresentative] = useState({});
     const [senator1, setSenator1] = useState({});
     const [senator2, setSenator2] = useState({});
-    // const [representativeId, setRepresentativeId] = useState({});
-    // const [senator1Id, setSenator1Id] = useState({});
-    // const [senator2Id, setSenator2Id] = useState({});
     const [formData, setFormData] = useState({
         zipCode: '',
     });
@@ -22,16 +19,13 @@ function GetOfficialsByAddressForm() {
 
         const officialsIds = await getOpenSecretsCandidateIds(
             data.state,
-            representative.name,
-            senator1.name,
-            senator2.name
+            data.representative.name,
+            data.senator1.name,
+            data.senator2.name
         );
-        // setRepresentativeOpenSecretsId(data.RepresentativeOpenSecretsId)
-        // setSenator1OpenSecretsId(data.Senator1OpenSecretsId)
-        // setSenator2OpenSecretsId(data.Senator2OpenSecretsId)
 
+        console.log(officialsIds);
     };
-
 
     const handleZipCodeChange = (event) => {
         const value = event.target.value;
