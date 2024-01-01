@@ -99,8 +99,8 @@ const getOpenSecretCandidatesInfo = async (officialId) => {
             throw new Error(`HTTP error. Status: ${response.status}`);
         }
         const data = await response.json();
-
-        console.log(data)
+        return data;
+        console.log(data);
 
     } catch (error) {
         console.error('Error fetching data:', error);

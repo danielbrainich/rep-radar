@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { getCivicInfoRepByAddress, getOpenSecretsRepId, getOpenSecretCandidatesInfo } from './api'
 
 function GetRepByAddressForm() {
@@ -10,6 +10,13 @@ function GetRepByAddressForm() {
         zipCode: '',
     });
 
+
+    useEffect(() => {
+        if (repContribData.response && repContribData.response.contributors) {
+            console.log('repContribData:', repContribData.contributor[0]['@attributes'].org_name);
+        }
+    }, [repContribData]);
+
     const handleSubmit = async (event) => {
         event.preventDefault();
 
@@ -20,7 +27,7 @@ function GetRepByAddressForm() {
         setRepOpenSecretsId(repId)
 
         const contribData = await getOpenSecretCandidatesInfo(repId);
-        setRepContribData(contribData);
+        setRepContribData(contribData.response.contributors);
     }
 
     const handleZipCodeChange = (event) => {
@@ -33,16 +40,37 @@ function GetRepByAddressForm() {
     }
 
     return (
-        <>
-            <p>Enter your zip code:</p>
-            <form onSubmit={handleSubmit}>
-                <input onChange={handleZipCodeChange} required placeholder='Zip code' type='number' id='zipCode' name='zipCode' className='form-control' />
-                <button className="btn btn-primary">Submit</button>
-            </form>
-            <ul>
-                <li>Representative: {representative.name}</li>
-            </ul>
-        </>
+            <div className="container">
+                <div className="row">
+                    <div className="col">
+                        <p>Enter your zip code:</p>
+                        <form onSubmit={handleSubmit}>
+                            <input onChange={handleZipCodeChange} required placeholder='Zip code' type='number' id='zipCode' name='zipCode' className='form-control' />
+                            <button className="btn btn-primary">Submit</button>
+                        </form>
+                        <p>Representative: {representative.name}</p>
+                        {repContribData.contributor ? (
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Contributor</th>
+                                    <th>Amount</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {repContribData.contributor.map((contributor, index) => (
+                                <tr key={`contributor-${index}`}>
+                                    <td>{contributor['@attributes'].org_name}</td>
+                                    <td>{contributor['@attributes'].total}</td>
+                                </tr>
+
+                                ))}
+                            </tbody>
+                        </table>
+                        ) : null}
+                    </div>
+                </div>
+            </div>
     );
 };
 
