@@ -1,4 +1,5 @@
 import { CIVIC_INFO_API_KEY, OPEN_SECRETS_API_KEY } from './apiKeys';
+import statesData from './statesData';
 
 const getCivicInfoRepByAddress = async (zipCode) => {
 

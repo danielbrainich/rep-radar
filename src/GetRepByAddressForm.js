@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
-import { getCivicInfoRepByAddress, getOpenSecretsRepId, getOpenSecretCandidatesInfo } from './api'
+import { getCivicInfoRepByAddress, getOpenSecretsRepId, getOpenSecretCandidatesInfo } from './api';
+import statesData from './statesData';
 
 function GetRepByAddressForm() {
 
@@ -7,9 +8,11 @@ function GetRepByAddressForm() {
     const [repOpenSecretsId, setRepOpenSecretsId] = useState({});
     const [repContribData, setRepContribData] = useState({});
     const [formData, setFormData] = useState({
+        streetAddress: '',
+        city: '',
+        state: '',
         zipCode: '',
     });
-
 
     useEffect(() => {
         if (repContribData.response && repContribData.response.contributors) {
@@ -20,7 +23,9 @@ function GetRepByAddressForm() {
     const handleSubmit = async (event) => {
         event.preventDefault();
 
-        const repData = await getCivicInfoRepByAddress(formData.zipCode);
+        const address = `${formData.streetAddress} ${formData.city} ${formData.state} ${formData.zipCode}`
+
+        const repData = await getCivicInfoRepByAddress(address);
         setRepresentative(repData.representative);
 
         const repId = await getOpenSecretsRepId(repData.state, repData.representative.name);
@@ -30,7 +35,7 @@ function GetRepByAddressForm() {
         setRepContribData(contribData.response.contributors);
     }
 
-    const handleZipCodeChange = (event) => {
+    const handleAddressChange = (event) => {
         const value = event.target.value;
         const inputName = event.target.name;
         setFormData({
@@ -43,10 +48,22 @@ function GetRepByAddressForm() {
             <div className="container">
                 <div className="row">
                     <div className="col">
-                        <p>Enter your zip code:</p>
+                        <p>Enter your address:</p>
                         <form onSubmit={handleSubmit}>
-                            <input onChange={handleZipCodeChange} required placeholder='Zip code' type='number' id='zipCode' name='zipCode' className='form-control' />
-                            <button className="btn btn-primary">Submit</button>
+                            <input onChange={handleAddressChange} required placeholder='Street address' type='text' id='streetAddress' name='streetAddress' className='form-control my-2' />
+                            <input onChange={handleAddressChange} required placeholder='City' type='text' id='city' name='city' className='form-control my-2' />
+                            <div>
+                            <select id="stateDropdown" onChange={handleAddressChange} className='form-control my-2' >
+                                <option value="">-- State --</option>
+                                {statesData.map((state) => (
+                                <option key={state.code} value={state.code}>
+                                    {state.name}
+                                </option>
+                                ))}
+                            </select>
+                            </div>
+                            <input onChange={handleAddressChange} required placeholder='Zip code' type='text' id='zipCode' name='zipCode' className='form-control my-2' />
+                            <button className="btn btn-primary my-2">Submit</button>
                         </form>
                         <p>Representative: {representative.name}</p>
                         {repContribData.contributor ? (
