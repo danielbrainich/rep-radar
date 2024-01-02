@@ -59,9 +59,18 @@ const getOpenSecretsRepId = async (repState, repName) => {
         }
         const data = await response.json();
 
+        function cleanName(repName) {
+            const names = repName.split(' ');
+            if (names.length > 2) {
+              names.splice(1, 1);
+            }
+            return names.join(' ');
+          }
+
         function getOpenSecretsRepIdFromName(stateRepList, repName) {
+            const cleanedName = cleanName(repName);
             for (let rep of stateRepList) {
-                if (rep['@attributes'].firstlast === repName) {
+                if (rep['@attributes'].firstlast === cleanedName) {
                     return rep['@attributes'].cid
                 }
             }
@@ -71,14 +80,12 @@ const getOpenSecretsRepId = async (repState, repName) => {
         console.log(repId);
         return repId;
 
-
     } catch (error) {
         console.error('Error fetching data:', error);
         return {
             representativeId: '',
         }
     }
-
 };
 
 const getOpenSecretCandidatesInfo = async (officialId) => {
@@ -101,7 +108,6 @@ const getOpenSecretCandidatesInfo = async (officialId) => {
         }
         const data = await response.json();
         return data;
-        console.log(data);
 
     } catch (error) {
         console.error('Error fetching data:', error);

@@ -78,7 +78,12 @@ function GetRepByAddressForm() {
                                 {repContribData.contributor.map((contributor, index) => (
                                 <tr key={`contributor-${index}`}>
                                     <td>{contributor['@attributes'].org_name}</td>
-                                    <td>{contributor['@attributes'].total}</td>
+                                    <td>
+                                        {new Intl.NumberFormat('en-US', {
+                                        style: 'currency',
+                                        currency: 'USD',
+                                        }).format(contributor['@attributes'].total)}
+                                    </td>
                                 </tr>
 
                                 ))}
