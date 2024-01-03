@@ -167,9 +167,9 @@ const getOpenSecretsCandidatePersonalFinances = async (officialId) => {
 const getRepresentativeProPublicaInfo = async (repName) => {
 
     const params = {
-        congress: 117,
+        congress: 118,
         chamber: 'house',
-        in_office: true,
+        // in_office: true,
     }
     const apiUrl = `https://api.propublica.org/congress/v1/${params.congress}/${params.chamber}/members.json`
 
@@ -187,30 +187,40 @@ const getRepresentativeProPublicaInfo = async (repName) => {
 
         const [firstName, lastName] = repName.split(' ');
 
-        // Search for the congressman by first name and last name
-        const matchingMember = data.results[0].members.find(member =>
-            member.first_name.toLowerCase() === firstName.toLowerCase() &&
-            member.last_name.toLowerCase() === lastName.toLowerCase()
-        );
+        let matchingMember;
 
-        if (matchingMember) {
-            console.log(matchingMember);
-            return matchingMember;
-        } else {
-            console.log(`No match found for ${repName}`);
-            return null;
+        for (let member of data.results[0].members) {
+            if (
+                member.first_name.toLowerCase() === firstName.toLowerCase() &&
+                member.last_name.toLowerCase() === lastName.toLowerCase()
+            ) {
+                matchingMember = member;
+                break;
+            }
         }
 
-    } catch (error) {
+        if (matchingMember) {
+            const proPublicaRepInfo = {
+                district: matchingMember.district,
+                geoid: matchingMember.geoid,
+                crp_id: matchingMember.crp_id,
+            }
+            return proPublicaRepInfo;
+
+        } else {
+            console.log(`No match found for ${firstName} ${lastName}`);
+            return null;
+        }
+    }
+
+    catch (error) {
         console.error('Error fetching data:', error);
         return {
-            representativeContribInfo: '',
+            district: '',
+            geoid: '',
+            crp_id: '',
         }
     }
 }
-
-
-
-
 
 export { getCivicInfoRepByAddress, getOpenSecretsRepId, getOpenSecretsCandidateContributions, getOpenSecretsCandidatePersonalFinances, getRepresentativeProPublicaInfo};
