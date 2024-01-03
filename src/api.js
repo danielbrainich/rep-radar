@@ -1,5 +1,4 @@
-import { CIVIC_INFO_API_KEY, OPEN_SECRETS_API_KEY } from './apiKeys';
-import statesData from './statesData';
+import { CIVIC_INFO_API_KEY, OPEN_SECRETS_API_KEY, PRO_PUBLICA_API_KEY,  } from './apiKeys';
 
 const getCivicInfoRepByAddress = async (zipCode) => {
 
@@ -22,18 +21,31 @@ const getCivicInfoRepByAddress = async (zipCode) => {
         }
         const data = await response.json();
 
-        const civicInfoRep = {
-            representative: data.officials[0],
-            state: data.normalizedInput.state,
+        function extractDistrictNumber(inputString) {
+            const parts = inputString.split("cd:");
+            return parts.length === 2 ? parseInt(parts[1], 10) : null;
         }
-        //clean this return up when you know exactly what data you'll need
-        console.log(civicInfoRep);
+
+        const civicInfoRep = {
+            representative: {
+                name: data.officials[0].name,
+                party: data.officials[0].party,
+                urls: data.officials[0].urls,
+                channels: data.officials[0].channels,
+            },
+            office: {
+                name: data.offices[0].name,
+                district: `${data.normalizedInput.state}-${extractDistrictNumber(data.offices[0].divisionId)}`,
+            },
+            state: data.normalizedInput.state,
+        };
         return civicInfoRep;
 
     } catch (error) {
         console.error('Error fetching data:', error);
         return {
             representative: {},
+            office: {},
             state: '',
         }
     }
@@ -76,30 +88,30 @@ const getOpenSecretsRepId = async (repState, repName) => {
             }
             return null;
         }
+
         const repId = getOpenSecretsRepIdFromName(data.response.legislator, repName);
-        console.log(repId);
-        return repId;
+
+        return {'repId': repId};
 
     } catch (error) {
         console.error('Error fetching data:', error);
-        return {
-            representativeId: '',
-        }
+        return {'repId': ''};;
     }
 };
 
-const getOpenSecretCandidatesInfo = async (officialId) => {
+const getOpenSecretsCandidateContributions = async (officialId) => {
 
     const apiUrl = 'http://www.opensecrets.org/api/'
     const params = {
         method: 'candContrib',
-        apiKey: OPEN_SECRETS_API_KEY,
+        apikey: OPEN_SECRETS_API_KEY,
         cid: officialId,
-        cycle: '2000', // out of range cycle returns most recent cycle
+        cycle: '2024',
         output: 'json',
     }
 
-    const urlWithParams = `${apiUrl}?method=${params.method}&apikey=${params.apiKey}&cid=${params.cid}&cycle=${params.cycle}&output=${params.output}`;
+    const queryString = new URLSearchParams(params).toString();
+    const urlWithParams = `${apiUrl}?${queryString}`;
 
     try {
         const response = await fetch(urlWithParams);
@@ -107,6 +119,41 @@ const getOpenSecretCandidatesInfo = async (officialId) => {
             throw new Error(`HTTP error. Status: ${response.status}`);
         }
         const data = await response.json();
+
+        const contribData = {
+            contributors: data.response.contributors.contributor
+        }
+        console.log(contribData)
+        return contribData;
+
+    } catch (error) {
+        console.error('Error fetching data:', error);
+        return { contributors: [] };
+    }
+};
+
+
+const getOpenSecretsCandidatePersonalFinances = async (officialId) => {
+
+    const apiUrl = 'http://www.opensecrets.org/api/'
+    const params = {
+        method: 'memPFDprofile',
+        apikey: OPEN_SECRETS_API_KEY,
+        cid: officialId,
+        cycle: '2024',
+        output: 'json',
+    }
+
+    const queryString = new URLSearchParams(params).toString();
+    const urlWithParams = `${apiUrl}?${queryString}`;
+
+    try {
+        const response = await fetch(urlWithParams);
+        if (!response.ok) {
+            throw new Error(`HTTP error. Status: ${response.status}`);
+        }
+        const data = await response.json();
+        console.log(data);
         return data;
 
     } catch (error) {
@@ -117,4 +164,53 @@ const getOpenSecretCandidatesInfo = async (officialId) => {
     }
 }
 
-export { getCivicInfoRepByAddress, getOpenSecretsRepId, getOpenSecretCandidatesInfo };
+const getRepresentativeProPublicaInfo = async (repName) => {
+
+    const params = {
+        congress: 117,
+        chamber: 'house',
+        in_office: true,
+    }
+    const apiUrl = `https://api.propublica.org/congress/v1/${params.congress}/${params.chamber}/members.json`
+
+    const headers = new Headers({
+        'X-API-Key': PRO_PUBLICA_API_KEY,
+    });
+
+    try {
+        const response = await fetch(apiUrl, { headers: headers });
+        if (!response.ok) {
+            throw new Error(`HTTP error. Status: ${response.status}`);
+        }
+        const data = await response.json();
+        console.log(data);
+
+        const [firstName, lastName] = repName.split(' ');
+
+        // Search for the congressman by first name and last name
+        const matchingMember = data.results[0].members.find(member =>
+            member.first_name.toLowerCase() === firstName.toLowerCase() &&
+            member.last_name.toLowerCase() === lastName.toLowerCase()
+        );
+
+        if (matchingMember) {
+            console.log(matchingMember);
+            return matchingMember;
+        } else {
+            console.log(`No match found for ${repName}`);
+            return null;
+        }
+
+    } catch (error) {
+        console.error('Error fetching data:', error);
+        return {
+            representativeContribInfo: '',
+        }
+    }
+}
+
+
+
+
+
+export { getCivicInfoRepByAddress, getOpenSecretsRepId, getOpenSecretsCandidateContributions, getOpenSecretsCandidatePersonalFinances, getRepresentativeProPublicaInfo};

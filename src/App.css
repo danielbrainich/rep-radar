@@ -36,3 +36,23 @@
     transform: rotate(360deg);
   }
 }
+
+p {
+  line-height: .5rem;
+}
+
+tr td:nth-child(1) {
+  padding-right: 1rem;
+}
+
+tr td:nth-child(2) {
+  padding-left: 1rem;
+}
+
+tr th:nth-child(1) {
+  padding-right: 1rem;
+}
+
+tr th:nth-child(2) {
+  padding-left: 1rem;
+}
