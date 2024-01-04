@@ -1,4 +1,4 @@
-import { CIVIC_INFO_API_KEY, OPEN_SECRETS_API_KEY, PRO_PUBLICA_API_KEY,  } from './apiKeys';
+import { CIVIC_INFO_API_KEY, OPEN_SECRETS_API_KEY, PRO_PUBLICA_API_KEY, CONGRESS_GOV_API_KEY } from './apiKeys';
 
 const getCivicInfoRepByAddress = async (zipCode) => {
 
@@ -169,7 +169,6 @@ const getRepresentativeProPublicaInfo = async (repName) => {
     const params = {
         congress: 118,
         chamber: 'house',
-        // in_office: true,
     }
     const apiUrl = `https://api.propublica.org/congress/v1/${params.congress}/${params.chamber}/members.json`
 
@@ -222,5 +221,12 @@ const getRepresentativeProPublicaInfo = async (repName) => {
         }
     }
 }
+
+
+
+
+
+
+
 
 export { getCivicInfoRepByAddress, getOpenSecretsRepId, getOpenSecretsCandidateContributions, getOpenSecretsCandidatePersonalFinances, getRepresentativeProPublicaInfo};
