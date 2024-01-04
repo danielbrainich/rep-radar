@@ -38,7 +38,8 @@ function GetRepByAddressForm() {
             <AddressForm onSubmit={handleFormSubmit} />
             <RepresentativeInfo repInfo={representativeInfo} />
             <ContributionsTable contributions={repContribData} />
-            <ProPublicaInfo info={proPublicaInfo} />
+            {console.log('is my rep photo here?', repPhoto)}
+            <ProPublicaInfo info={proPublicaInfo} photo={repPhoto} />
         </div>
     );
 }

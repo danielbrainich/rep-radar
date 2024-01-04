@@ -18,6 +18,7 @@ const getCongressGovPhoto = async (bioGuideId) => {
         }
         const data = await response.json();
         console.log(data.member.depiction.imageUrl);
+        return data.member.depiction.imageUrl;
     }
 
     catch (error) {
