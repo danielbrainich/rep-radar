@@ -23,15 +23,23 @@ const getRepresentativeProPublicaInfo = async (repName) => {
 
         const [firstName, lastName] = repName.split(' ');
 
-        let matchingMember;
-
+        let filteredMembers = [];
         for (let member of data.results[0].members) {
-            if (
-                member.first_name.toLowerCase() === firstName.toLowerCase() &&
-                member.last_name.toLowerCase() === lastName.toLowerCase()
-            ) {
-                matchingMember = member;
-                break;
+            if (member.last_name.toLowerCase() === lastName.toLowerCase()) {
+                filteredMembers.push(member);
+            }
+        }
+
+        let matchingMember = null;
+
+        if (filteredMembers.length === 1) {
+            matchingMember = filteredMembers[0];
+        } else if (filteredMembers.length > 1) {
+            for (let member of filteredMembers) {
+                if (member.first_name.toLowerCase() === firstName.toLowerCase()) {
+                    matchingMember = member;
+                    break;
+                }
             }
         }
 

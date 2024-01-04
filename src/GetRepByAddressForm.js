@@ -5,13 +5,17 @@ import { getRepresentativeProPublicaInfo } from './api/proPublicaApi';
 import AddressForm from './components/AddressForm';
 import RepresentativeInfo from './components/RepresentativeInfo';
 import ContributionsTable from './components/ContributionsTable';
-import ProPublicaInfo from './components/ProPublicaInfo';
-import getCongressGovPhoto from './api/congressApi';
+import CongressGovPhoto from './components/CongressGovPhoto';
+import { getCongressGovPhoto, getSponsoredBillInfo } from './api/congressApi';
+import VotingInfo from './components/VotingInfo';
 
 function GetRepByAddressForm() {
+    const [isFormSubmitted, setIsFormSubmitted] = useState(false);
     const [representativeInfo, setRepresentativeInfo] = useState({});
     const [repContribData, setRepContribData] = useState({});
     const [proPublicaInfo, setProPublicaInfo] = useState({});
+    const [sponsoredBills, setRepSponsoredBills] = useState({});
+
     const [repPhoto, setRepPhoto] = useState({});
 
     const handleFormSubmit = async (formData) => {
@@ -31,15 +35,55 @@ function GetRepByAddressForm() {
 
         const congressGovPhoto = await getCongressGovPhoto(proPubInfo.id);
         setRepPhoto(congressGovPhoto);
+
+        const sponsoredBillInfo = await getSponsoredBillInfo(proPubInfo.id);
+        setRepSponsoredBills(sponsoredBillInfo);
+
+        setIsFormSubmitted(true);
     };
 
     return (
         <div className="container">
-            <AddressForm onSubmit={handleFormSubmit} />
-            <RepresentativeInfo repInfo={representativeInfo} />
-            <ContributionsTable contributions={repContribData} />
-            {console.log('is my rep photo here?', repPhoto)}
-            <ProPublicaInfo info={proPublicaInfo} photo={repPhoto} />
+            <div className="row min-vh-100">
+                <div className="col-4 d-flex align-items-center justify-content-center">
+                    <AddressForm onSubmit={handleFormSubmit} />
+                </div>
+                <div className="col-8 d-flex justify-content-center mt-5">
+                    {isFormSubmitted && (
+                    <div>
+                        <ul className="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                            <li className="nav-item" role="presentation">
+                                <button className="nav-link active" id="rep-profile-tab" data-bs-toggle="pill" data-bs-target="#rep-profile" type="button" role="tab">Profile</button>
+                            </li>
+                            <li className="nav-item" role="presentation">
+                                <button className="nav-link" id="contributions-tab" data-bs-toggle="pill" data-bs-target="#contributions" type="button" role="tab">Contributions</button>
+                            </li>
+                            <li className="nav-item" role="presentation">
+                                <button className="nav-link" id="voting-info-tab" data-bs-toggle="pill" data-bs-target="#voting-info" type="button" role="tab">Voting Info</button>
+                            </li>
+                        </ul>
+                        <div className="tab-content" id="pills-tabContent">
+                            <div className="tab-pane fade show active" id="rep-profile" role="tabpanel" aria-labelledby="rep-info-tab">
+                                <div className="d-flex flex-column align-items-center justify-content-center mt-5">
+                                    <CongressGovPhoto info={proPublicaInfo} photo={repPhoto} />
+                                    <RepresentativeInfo repInfo={representativeInfo} />
+                                </div>
+                            </div>
+                            <div className="tab-pane fade" id="contributions" role="tabpanel" aria-labelledby="contributions-tab">
+                                <div className="d-flex flex-column align-items-center justify-content-center mt-5">
+                                    <ContributionsTable contributions={repContribData} />
+                                </div>
+                            </div>
+                            <div className="tab-pane fade" id="voting-info" role="tabpanel" aria-labelledby="voting-info-tab">
+                                <div className="d-flex flex-column align-items-center justify-content-center mt-5">
+                                    <VotingInfo info={proPublicaInfo} />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    )}
+                </div>
+            </div>
         </div>
     );
 }
