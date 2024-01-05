@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import getCivicInfoRepByAddress from './api/civicInfoApi';
 import { getOpenSecretsRepId, getOpenSecretsCandidateContributions, getOpenSecretsCandidateSummary } from './api/openSecretsApi';
-import { getRepresentativeProPublicaInfo } from './api/proPublicaApi';
+import { getRepresentativeProPublicaInfo, getRepresentativeProPublicaStatements } from './api/proPublicaApi';
 import AddressForm from './components/AddressForm';
 import RepresentativeInfo from './components/RepresentativeInfo';
 import ContributionsTable from './components/ContributionsTable';
 import CongressGovPhoto from './components/CongressGovPhoto';
 import SponsoredBills from './components/SponsoredBills';
+import Statements from './components/Statements.js';
 import { getCongressGovPhoto, getSponsoredBillInfo } from './api/congressApi';
 import VotingInfo from './components/VotingInfo';
 
@@ -17,6 +18,7 @@ function GetRepByAddressForm() {
     const [proPublicaInfo, setProPublicaInfo] = useState({});
     const [repContribSummary, setRepContribSummary] = useState({});
     const [repSponsoredBills, setRepSponsoredBills] = useState({});
+    const [repStatements, setRepStatements] = useState({});
 
     const [repPhoto, setRepPhoto] = useState({});
 
@@ -43,7 +45,9 @@ function GetRepByAddressForm() {
 
         const sponsoredBillInfo = await getSponsoredBillInfo(proPubInfo.id);
         setRepSponsoredBills(sponsoredBillInfo);
-        console.log('newdata:', sponsoredBillInfo)
+
+        const repStatements = await getRepresentativeProPublicaStatements(proPubInfo.id);
+        setRepStatements(repStatements);
 
         setIsFormSubmitted(true);
     };
@@ -71,7 +75,7 @@ function GetRepByAddressForm() {
                                 <button className="nav-link" id="sponsored-bills-tab" data-bs-toggle="pill" data-bs-target="#sponsored-bills" type="button" role="tab">Sponsored Bills</button>
                             </li>
                             <li className="nav-item" role="presentation">
-                                <button className="nav-link" id="elections-tab" data-bs-toggle="pill" data-bs-target="#elections" type="button" role="tab">Elections</button>
+                                <button className="nav-link" id="statements-tab" data-bs-toggle="pill" data-bs-target="#statements" type="button" role="tab">Statements</button>
                             </li>
                         </ul>
                         <div className="tab-content" id="pills-tabContent">
@@ -98,6 +102,11 @@ function GetRepByAddressForm() {
                             <div className="tab-pane fade" id="sponsored-bills" role="tabpanel" aria-labelledby="sponsored-bills-tab">
                                 <div className="d-flex flex-column align-items-center justify-content-center mt-5">
                                     <SponsoredBills sponsoredBills={repSponsoredBills} />
+                                </div>
+                            </div>
+                            <div className="tab-pane fade" id="statements" role="tabpanel" aria-labelledby="statements-tab">
+                                <div className="d-flex flex-column align-items-center justify-content-center mt-5">
+                                    <Statements statements={repStatements} />
                                 </div>
                             </div>
                         </div>

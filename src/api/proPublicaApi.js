@@ -63,4 +63,37 @@ const getRepresentativeProPublicaInfo = async (repName) => {
     }
 }
 
-export { getRepresentativeProPublicaInfo };
+const getRepresentativeProPublicaStatements = async (repId) => {
+
+    const params = {
+        memberId: repId,
+        congress: 118,
+    }
+    const apiUrl = `https://api.propublica.org/congress/v1/members/${params.memberId}/statements/${params.congress}.json`
+
+    const headers = new Headers({
+        'X-API-Key': PRO_PUBLICA_API_KEY,
+    });
+
+    try {
+        const response = await fetch(apiUrl, { headers: headers });
+        if (!response.ok) {
+            throw new Error(`HTTP error. Status: ${response.status}`);
+        }
+        const data = await response.json();
+        console.log('proPublicaStatements:', data);
+
+        return data;
+    }
+
+    catch (error) {
+        console.error('Error fetching data:', error);
+        return {
+            district: '',
+            geoid: '',
+            crp_id: '',
+        }
+    }
+}
+
+export { getRepresentativeProPublicaInfo, getRepresentativeProPublicaStatements };
