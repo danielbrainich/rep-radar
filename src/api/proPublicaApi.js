@@ -19,7 +19,7 @@ const getRepresentativeProPublicaInfo = async (repName) => {
             throw new Error(`HTTP error. Status: ${response.status}`);
         }
         const data = await response.json();
-        console.log(data);
+        console.log('proPublicaData:', data);
 
         const [firstName, lastName] = repName.split(' ');
 
@@ -44,12 +44,8 @@ const getRepresentativeProPublicaInfo = async (repName) => {
         }
 
         if (matchingMember) {
-            const proPublicaRepInfo = {
-                district: matchingMember.district,
-                id: matchingMember.id,
-                crp_id: matchingMember.crp_id,
-            }
-            return proPublicaRepInfo;
+
+            return matchingMember;
 
         } else {
             console.log(`No match found for ${firstName} ${lastName}`);

@@ -1,4 +1,4 @@
-.App {
+/* .App {
   text-align: center;
 }
 
@@ -37,10 +37,6 @@
   }
 }
 
-p {
-  line-height: .5rem;
-}
-
 tr td:nth-child(1) {
   padding-right: 1rem;
 }
@@ -56,3 +52,7 @@ tr th:nth-child(1) {
 tr th:nth-child(2) {
   padding-left: 1rem;
 }
+
+p {
+  line-height: .75;
+} */

@@ -1,4 +1,4 @@
-import './App.css';
+import './main.css'
 import GetRepByAddressForm from './GetRepByAddressForm'
 
 function App() {

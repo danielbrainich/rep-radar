@@ -16,6 +16,7 @@ const getCongressGovPhoto = async (bioGuideId) => {
             throw new Error(`HTTP error. Status: ${response.status}`);
         }
         const data = await response.json();
+        console.log('congressGovData:', data)
         return data.member.depiction.imageUrl;
     }
 
@@ -28,8 +29,6 @@ const getCongressGovPhoto = async (bioGuideId) => {
         }
     }
 }
-
-
 
 const getSponsoredBillInfo = async (bioGuideId) => {
     const params = {
@@ -45,13 +44,17 @@ const getSponsoredBillInfo = async (bioGuideId) => {
             throw new Error(`HTTP error. Status: ${response.status}`);
         }
         const data = await response.json();
-        console.log(data);
-        return data;
+        console.log('CongressGovSponsoredBills:', data.sponsoredLegislation);
+
+        return {
+            sponsoredLegislation: data.sponsoredLegislation,
+            count: data.pagination.count
+        };
     }
 
     catch (error) {
         console.error('Error fetching data:', error);
-        return {}
+        return []
     }
 }
 

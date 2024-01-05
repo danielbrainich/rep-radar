@@ -20,6 +20,7 @@ const getCivicInfoRepByAddress = async (zipCode) => {
             throw new Error(`HTTP error. Status: ${response.status}`);
         }
         const data = await response.json();
+        console.log('civicInfoData:', data)
 
         function extractDistrictNumber(inputString) {
             const parts = inputString.split("cd:");
