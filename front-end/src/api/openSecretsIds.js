@@ -1,52 +1,40 @@
 import { OPEN_SECRETS_API_KEY } from '../apiKeys';
 
-const getOpenSecretsRepId = async (repState, repName) => {
-
-    const apiUrl = 'http://www.opensecrets.org/api/'
-    const params = {
-        method: 'getLegislators',
-        id: repState,
-        apikey: OPEN_SECRETS_API_KEY,
-        output: 'json',
+const fetchOpenSecretsIds = async (url) => {
+    const response = await fetch(url);
+    if (!response.ok) {
+        throw new Error(`HTTP error. Status: ${response.status}`);
     }
+    return response.json();
+};
 
-    const queryString = new URLSearchParams(params).toString();
-    const urlWithParams = `${apiUrl}?${queryString}`;
+const cleanName = (repName) => {
+    const names = repName.split(' ');
+    if (names.length > 2) {
+      names.splice(1, 1);
+    }
+    return names.join(' ');
+};
 
+const getOpenSecretsId = async (repState, repName) => {
+    const apiUrl = `http://localhost:8000/api/open_secrets/ids/${repState}`;
     try {
-        const response = await fetch(urlWithParams);
-        if (!response.ok) {
-            throw new Error(`HTTP error. Status: ${response.status}`);
-        }
-        const data = await response.json();
-
-        function cleanName(repName) {
-            const names = repName.split(' ');
-            if (names.length > 2) {
-              names.splice(1, 1);
+        const data = await fetchOpenSecretsIds(apiUrl);
+        const cleanedName = cleanName(repName);
+        for (let rep of data.response.legislator) {
+            if (rep['@attributes'].firstlast === cleanedName) {
+                return { 'repId': rep['@attributes'].cid };
             }
-            return names.join(' ');
-          }
-
-        function getOpenSecretsRepIdFromName(stateRepList, repName) {
-            const cleanedName = cleanName(repName);
-            for (let rep of stateRepList) {
-                if (rep['@attributes'].firstlast === cleanedName) {
-                    return rep['@attributes'].cid
-                }
-            }
-            return null;
         }
-
-        const repId = getOpenSecretsRepIdFromName(data.response.legislator, repName);
-
-        return {'repId': repId};
-
+        return { 'repId': null };
     } catch (error) {
         console.error('Error fetching data:', error);
-        return {'repId': ''};;
+        return { 'repId': '', 'error': true, 'errorMessage': error.message };
     }
 };
+
+export default fetchOpenSecretsIds;
+
 
 const getOpenSecretsCandidateContributions = async (officialId) => {
 
@@ -82,9 +70,9 @@ const getOpenSecretsCandidateContributions = async (officialId) => {
         console.error('Error fetching data:', error);
         return {
             contributors: [],
-            contributors: '',
-            contributors: '',
-            contributors: '',
+            cycle: '',
+            notice: '',
+            origin: '',
 
         };
     }
@@ -182,4 +170,4 @@ const getOpenSecretsCandidatePersonalFinances = async (officialId) => {
     }
 }
 
-export { getOpenSecretsRepId, getOpenSecretsCandidateContributions, getOpenSecretsCandidatePersonalFinances, getOpenSecretsCandidateSummary };
+export { getOpenSecretsId, getOpenSecretsCandidateContributions, getOpenSecretsCandidatePersonalFinances, getOpenSecretsCandidateSummary };
