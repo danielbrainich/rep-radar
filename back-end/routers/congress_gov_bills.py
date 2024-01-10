@@ -6,13 +6,13 @@ CONGRESS_GOV_API_KEY = os.getenv('CONGRESS_GOV_API_KEY')
 
 congress_gov_bills = APIRouter()
 
-@congress_gov_bills.get('/api/civic_info/{bioId}')
+@congress_gov_bills.get('/api/congress_gov/bills/{bioId}')
 async def get_representative(bioId: str):
     params = {
         'bioId': bioId,
         'key': CONGRESS_GOV_API_KEY,
     }
-    api_url = f'https://api.congress.gov/v3/member/${params.bioId}/sponsored-legislation?api_key=${params.key}'
+    api_url = f'https://api.congress.gov/v3/member/{params["bioId"]}/sponsored-legislation?api_key={params["key"]}'
 
     try:
         response = requests.get(api_url)

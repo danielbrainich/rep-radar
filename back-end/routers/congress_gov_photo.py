@@ -12,7 +12,7 @@ async def get_representative(bioId: str):
         'bioId': bioId,
         'key': CONGRESS_GOV_API_KEY,
     }
-    api_url = f'https://api.congress.gov/v3/member/{params.bioId}?api_key={params.key}'
+    api_url = f'https://api.congress.gov/v3/member/{params["bioId"]}?api_key={params["key"]}'
 
     try:
         response = requests.get(api_url)
