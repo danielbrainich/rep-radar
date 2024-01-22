@@ -24,8 +24,8 @@ function AddressForm({ onSubmit }) {
     };
 
     return (
-        <div className="d-flex flex-column align-items-center">
-            <h5>Enter your address</h5>
+        <div className="d-flex flex-column align-items-center" id="address-form">
+            <h5>Search Rep by Address</h5>
             <form onSubmit={handleSubmit}>
                 <input onChange={handleAddressChange} required placeholder='Street address' type='text' id='streetAddress' name='streetAddress' className='form-control my-2' />
                 <input onChange={handleAddressChange} required placeholder='City' type='text' id='city' name='city' className='form-control my-2' />
@@ -40,7 +40,7 @@ function AddressForm({ onSubmit }) {
                     </select>
                 </div>
                 <input onChange={handleAddressChange} required placeholder='Zip code' type='text' id='zipCode' name='zipCode' className='form-control my-2' />
-                <button className="btn btn-primary my-2">Find My Rep</button>
+                <button className="btn btn-primary my-2">Search</button>
             </form>
         </div>
     );

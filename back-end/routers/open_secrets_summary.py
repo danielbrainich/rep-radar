@@ -4,9 +4,9 @@ import os
 
 OPEN_SECRETS_API_KEY = os.getenv("OPEN_SECRETS_API_KEY")
 
-open_secrets_summary = APIRouter()
+router = APIRouter()
 
-@open_secrets_summary.get('/api/open_secrets/summary/{id}')
+@router.get('/api/open_secrets/summary/{id}')
 async def get_rep(id:str):
     api_url = 'http://www.opensecrets.org/api/'
     params = {

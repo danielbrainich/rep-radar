@@ -26,7 +26,7 @@ const reshapeCivicInfoData = (data) => {
     };
 };
 
-const GetCivicInfoData = async (address) => {
+const getCivicInfoData = async (address) => {
     try {
         const data = await fetchCivicInfoData(`http://localhost:8000/api/civic_info/${address}`);
         return reshapeCivicInfoData(data);
@@ -40,4 +40,4 @@ const GetCivicInfoData = async (address) => {
     };
 };
 
-export default GetCivicInfoData;
+export default getCivicInfoData;

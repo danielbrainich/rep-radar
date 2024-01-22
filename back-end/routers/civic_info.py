@@ -4,9 +4,9 @@ import os
 
 CIVIC_INFO_API_KEY = os.getenv('CIVIC_INFO_API_KEY')
 
-civic_info = APIRouter()
+router = APIRouter()
 
-@civic_info.get('/api/civic_info/{address}')
+@router.get('/api/civic_info/{address}')
 async def get_representative(address: str):
     api_url = 'https://www.googleapis.com/civicinfo/v2/representatives'
     params = {

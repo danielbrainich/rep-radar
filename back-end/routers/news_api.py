@@ -4,9 +4,9 @@ import os
 
 NEWS_API_API_KEY = os.getenv('NEWS_API_API_KEY')
 
-news_api = APIRouter()
+router = APIRouter()
 
-@news_api.get('/api/news_api/{name}')
+@router.get('/api/news_api/{name}')
 async def get_news(name: str):
     api_url = 'https://newsapi.org/v2/everything'
     params = {

@@ -4,9 +4,9 @@ import os
 
 PRO_PUBLICA_API_KEY = os.getenv('PRO_PUBLICA_API_KEY')
 
-pro_publica_statements = APIRouter()
+router = APIRouter()
 
-@pro_publica_statements.get('/api/pro_publica/statements/{id}')
+@router.get('/api/pro_publica/statements/{id}')
 async def get_news(id: str):
 
     params = {

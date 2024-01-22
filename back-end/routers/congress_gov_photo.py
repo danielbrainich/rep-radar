@@ -4,9 +4,9 @@ import os
 
 CONGRESS_GOV_API_KEY = os.getenv('CONGRESS_GOV_API_KEY')
 
-congress_gov_photo = APIRouter()
+router = APIRouter()
 
-@congress_gov_photo.get('/api/congress_gov/photo/{bioId}')
+@router.get('/api/congress_gov/photo/{bioId}')
 async def get_representative(bioId: str):
     params = {
         'bioId': bioId,
