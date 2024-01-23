@@ -11981,3 +11981,21 @@ textarea.form-control-lg {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2), 0 4px 8px rgba(0, 0, 0, 0.15), 0 8px 16px rgba(0, 0, 0, 0.1);
   transition: box-shadow 0.3s;
 }
+
+body {
+  font-family: "Roboto", sans-serif;
+}
+
+h1, .h1 {
+  font-family: "Roboto Slab", serif;
+}
+
+h2, .h2 {
+  font-family: "Roboto Slab", serif;
+  font-size: 1.75rem;
+}
+
+h3, .h3 {
+  font-family: "Roboto Slab", serif;
+  font-size: 1.25rem;
+}

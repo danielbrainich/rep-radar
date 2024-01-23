@@ -32,8 +32,8 @@ function GetRepByAddressForm() {
         <>
             {!isFormSubmitted &&
                 <div className="container vh-100">
-                    <div className="row vh-100 justify-content-center align-items-center">
-                        <div className="col-md-6">
+                    <div className="row vh-100">
+                        <div className="col-md-3">
                             <AddressForm onSubmit={handleFormSubmit} />
                         </div>
                     </div>
