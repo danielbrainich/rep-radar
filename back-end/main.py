@@ -4,14 +4,15 @@ from dotenv import load_dotenv
 load_dotenv()
 
 from routers import (
-    civic_info, news_api,
+    civic_info,
+    news_api,
     open_secrets_ids,
     open_secrets_summary,
     open_secrets_contributions,
     congress_gov_photo,
     congress_gov_bills,
     pro_publica_ids,
-    pro_publica_statements
+    pro_publica_statements,
 )
 
 from dependencies import setup_dependencies

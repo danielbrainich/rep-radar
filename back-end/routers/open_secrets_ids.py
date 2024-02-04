@@ -6,18 +6,19 @@ OPEN_SECRETS_API_KEY = os.getenv("OPEN_SECRETS_API_KEY")
 
 router = APIRouter()
 
-@router.get('/api/open_secrets/ids/{state}')
-async def get_rep(state:str):
-    api_url = 'http://www.opensecrets.org/api/'
+
+@router.get("/api/open_secrets/ids/{state}")
+async def get_rep(state: str):
+    api_url = "http://www.opensecrets.org/api/"
     params = {
-        'method': 'getLegislators',
-        'id': state,
-        'apikey': OPEN_SECRETS_API_KEY,
-        'output': 'json',
+        "method": "getLegislators",
+        "id": state,
+        "apikey": OPEN_SECRETS_API_KEY,
+        "output": "json",
     }
     headers = {
-        'Content-Type': 'application/json',
-        'User-Agent': 'MyApp/1.0',
+        "Content-Type": "application/json",
+        "User-Agent": "MyApp/1.0",
     }
 
     try:

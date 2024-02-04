@@ -2,19 +2,20 @@ from fastapi import APIRouter, HTTPException
 import requests
 import os
 
-CIVIC_INFO_API_KEY = os.getenv('CIVIC_INFO_API_KEY')
+CIVIC_INFO_API_KEY = os.getenv("CIVIC_INFO_API_KEY")
 
 router = APIRouter()
 
-@router.get('/api/civic_info/{address}')
+
+@router.get("/api/civic_info/{address}")
 async def get_representative(address: str):
-    api_url = 'https://www.googleapis.com/civicinfo/v2/representatives'
+    api_url = "https://www.googleapis.com/civicinfo/v2/representatives"
     params = {
-        'address': address,
-        'includeOffices': 'true',
-        'levels': 'country',
-        'roles': 'legislatorLowerBody',
-        'key': CIVIC_INFO_API_KEY,
+        "address": address,
+        "includeOffices": "true",
+        "levels": "country",
+        "roles": "legislatorLowerBody",
+        "key": CIVIC_INFO_API_KEY,
     }
 
     try:

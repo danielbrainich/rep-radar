@@ -2,18 +2,19 @@ from fastapi import APIRouter, HTTPException
 import requests
 import os
 
-NEWS_API_API_KEY = os.getenv('NEWS_API_API_KEY')
+NEWS_API_API_KEY = os.getenv("NEWS_API_API_KEY")
 
 router = APIRouter()
 
-@router.get('/api/news_api/{name}')
+
+@router.get("/api/news_api/{name}")
 async def get_news(name: str):
-    api_url = 'https://newsapi.org/v2/everything'
+    api_url = "https://newsapi.org/v2/everything"
     params = {
-        'q': f'"{name}"',
-        'apiKey': NEWS_API_API_KEY,
-        'language': 'en',
-        'excludeDomains': 'boyculture.com'
+        "q": f'"{name}"',
+        "apiKey": NEWS_API_API_KEY,
+        "language": "en",
+        "excludeDomains": "boyculture.com",
     }
 
     try:
