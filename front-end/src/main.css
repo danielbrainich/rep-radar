@@ -11999,3 +11999,19 @@ h3, .h3 {
   font-family: "Roboto Slab", serif;
   font-size: 1.25rem;
 }
+
+.card {
+  border: none;
+}
+
+.custom-nav .custom-link {
+  border: none;
+  background-color: transparent;
+  color: grey;
+  padding: 0.75rem;
+  text-align: left;
+}
+
+.custom-nav .custom-link.active {
+  color: black;
+}

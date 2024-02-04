@@ -1,23 +1,20 @@
-function ContributionsTable({ contributions, summary }) {
+function Finances({ contributions, summary }) {
     return (
         <>
-            {summary && contributions && contributions.cycle && contributions.contributors && (
-
+            {summary && contributions && (
                 <div className="col p-4 pb-0">
-
-                    <div className="pb-2">
-                        <h2 className="text-center pb-2">Campaign Finance</h2>
+                    <div className="pb-0">
+                        <h2 className="text-center pb-2">Finances</h2>
                         <p>
-                            Transparency in campaign finance is essential for democratic integrity. This summary for Rep. REP_NAME_HERE for the {contributions.cycle} election cycle, sourced from
-                            <a href="https://www.opensecrets.org" target="_blank">OpenSecrets</a>, provides insights into contributions and expenditures, reflecting the campaign's financial transparency.
-                            The <a href="https://www.fec.gov" target="_blank">Federal Election Commission (FEC)</a> enforces campaign finance laws to ensure this transparency.
+                            Transparency in campaign finance is essential for democratic integrity. The <a href="https://www.fec.gov" target="_blank">Federal Election Commission (FEC)</a> enforces campaign finance laws, including laws around disclosure. This summary for Rep. REP_NAME_HERE for the {contributions.cycle} election cycle, sourced
+                            from <a href="https://www.opensecrets.org" target="_blank">OpenSecrets</a>, provides insights into campaign contributions and expenditures.
                         </p>
                     </div>
 
                     <hr className="pb-2"/>
 
                     <div className="pb-2 d-flex flex-column align-items-center">
-                        <h3 className="text-center pb-2">Finances Summary</h3>
+                        <h3 className="text-center pb-2">Summary</h3>
                         <div className="col-12 col-md-6">
                             <table className="table table-hover">
                                 <tbody>
@@ -40,7 +37,6 @@ function ContributionsTable({ contributions, summary }) {
                                 </tbody>
                             </table>
                         </div>
-                        {/* <p className="small">(Information last updated {summary.lastUpdated})</p> */}
                     </div>
 
                     <hr className="pb-2"/>
@@ -79,4 +75,4 @@ function ContributionsTable({ contributions, summary }) {
     );
 }
 
-export default ContributionsTable;
+export default Finances;

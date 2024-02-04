@@ -1,6 +1,6 @@
 import './main.css';
 import Nav from './components/Nav';
-import GetRepByAddressForm from './GetRepByAddressForm';
+import GetRepByAddressForm from './components/RepInfo';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 function App() {
