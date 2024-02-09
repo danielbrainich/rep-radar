@@ -70,20 +70,21 @@ function RepInfo() {
             {isFormSubmitted && !isLoading && (
                 <div className="container">
                     <div className="row">
-                        <div className="col-md-3">
-                            <div className="d-flex flex-column">
-                                <div className="py-5">
-                                    <h2 className="text-center pb-3">RepRadar</h2>
-                                    <AddressForm onSubmit={handleFormSubmit} />
-                                </div>
-                                <div className="nav flex-column custom-nav" id="tab-list" role="tablist" aria-orientation="vertical">
-                                    <button className="custom-link active" id="profile-tab" data-bs-toggle="pill" data-bs-target="#profile" type="button" role="tab">Profile</button>
-                                    <button className="custom-link" id="finances-tab" data-bs-toggle="pill" data-bs-target="#finances" type="button" role="tab">Finances</button>
-                                    <button className="custom-link" id="voting-info-tab" data-bs-toggle="pill" data-bs-target="#voting-info" type="button" role="tab">Voting</button>
-                                    <button className="custom-link" id="sponsored-bills-tab" data-bs-toggle="pill" data-bs-target="#sponsored-bills" type="button" role="tab">Bills</button>
-                                    <button className="custom-link" id="statements-tab" data-bs-toggle="pill" data-bs-target="#statements" type="button" role="tab">Statements</button>
-                                    <button className="custom-link" id="news-tab" data-bs-toggle="pill" data-bs-target="#news" type="button" role="tab">News</button>
-                                </div>
+                        <div className="col-md-3 d-flex flex-column justify-content-between vh-100">
+                            <div className="py-5">
+                                <h2 onClick={handleClick} className="cursor-pointer text-center pb-3">RepRadar</h2>
+                                <AddressForm onSubmit={handleFormSubmit} />
+                            </div>
+                            <div className="nav flex-column custom-nav" id="tab-list" role="tablist" aria-orientation="vertical">
+                                <button className="custom-link active" id="profile-tab" data-bs-toggle="pill" data-bs-target="#profile" type="button" role="tab">Profile</button>
+                                <button className="custom-link" id="finances-tab" data-bs-toggle="pill" data-bs-target="#finances" type="button" role="tab">Finances</button>
+                                <button className="custom-link" id="voting-info-tab" data-bs-toggle="pill" data-bs-target="#voting-info" type="button" role="tab">Voting</button>
+                                <button className="custom-link" id="sponsored-bills-tab" data-bs-toggle="pill" data-bs-target="#sponsored-bills" type="button" role="tab">Bills</button>
+                                <button className="custom-link" id="statements-tab" data-bs-toggle="pill" data-bs-target="#statements" type="button" role="tab">Statements</button>
+                                <button className="custom-link" id="news-tab" data-bs-toggle="pill" data-bs-target="#news" type="button" role="tab">News</button>
+                            </div>
+                            <div className="pb-4">
+                                Created by <a href="https://www.danielbrainich.com" target="_blank" rel="noopener norefferer">danielbrainich</a>
                             </div>
                         </div>
                         <div className="col-md-9 rep-content-container p-4 mb-2">
