@@ -16,7 +16,7 @@ function Profile({ profile, info, photo }) {
         <>
             {profile.representative && (
                 <div className="text-center">
-                    <h2 className="card-title pb-4">{profile.representative.name}</h2>
+                    <h3 className="card-title pb-4">{profile.representative.name}</h3>
                     <div className="pb-2">
                         <CongressGovPhoto info={info} photo={photo} />
                     </div>

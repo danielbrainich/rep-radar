@@ -57,8 +57,8 @@ function RepInfo() {
             )}
 
             {isLoading && (
-                <div className="container vh-100">
-                    <div className="row vh-100">
+                <div className="container vh-100 d-flex align-items-center justify-content-center">
+                    <div className="row justify-content-center">
                         <div className="col text-center">
                             <div className="mb-2">Gathering info...</div>
                             <div className="spinner-grow text-primary" role="status"></div>
@@ -72,8 +72,9 @@ function RepInfo() {
                     <div className="row">
                         <div className="col-md-3">
                             <div className="d-flex flex-column">
-                                <div className="pb-5">
-                                <button onClick={handleClick} className="btn btn-primary" type="submit">New Search</button>
+                                <div className="py-5">
+                                    <h2 className="text-center pb-3">RepRadar</h2>
+                                    <AddressForm onSubmit={handleFormSubmit} />
                                 </div>
                                 <div className="nav flex-column custom-nav" id="tab-list" role="tablist" aria-orientation="vertical">
                                     <button className="custom-link active" id="profile-tab" data-bs-toggle="pill" data-bs-target="#profile" type="button" role="tab">Profile</button>
@@ -87,7 +88,7 @@ function RepInfo() {
                         </div>
                         <div className="col-md-9 rep-content-container p-4 mb-2">
                             <div className="tab-content" id="tab-content">
-                                <div className="tab-pane fade show active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                                <div className="tab-pane fade show active mt-5" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                                     <Profile profile={data.representativeInfo}  info={data.proPublicaInfo} photo={data.repPhoto.imageUrl} />
                                 </div>
                                 <div className="tab-pane fade" id="finances" role="tabpanel" aria-labelledby="finances-tab">

@@ -16,7 +16,6 @@ $primary: #CCCBFD;
 
 body {
   font-family: 'Raleway', sans-serif;
-  background-color: #FFFAF6;
 }
 
 h1 {
@@ -24,16 +23,20 @@ h1 {
   font-size: 4.65rem;
 }
 
+@media (max-width: 500px) {
+  h1 {
+    font-size: 3rem;
+  }
+}
+
 h2 {
   font-family: 'Ultra', serif;
-  font-size: 2rem;
-  font-weight: 700;
+  font-size: 3rem;
 }
 
 h3 {
   font-family: 'Ultra', serif;
-  font-weight: 700;
-  font-size: 1.5rem;
+  font-size: 2.5rem;
 }
 
 .card {
@@ -82,5 +85,5 @@ h3 {
 }
 
 .content-container {
-  max-width: 70rem;
+  max-width: 71rem;
 }
