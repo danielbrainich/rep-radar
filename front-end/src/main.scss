@@ -39,6 +39,11 @@ h3 {
   font-size: 2.5rem;
 }
 
+h4 {
+  font-family: 'Ultra', serif;
+  font-size: 1.5rem;
+}
+
 .card {
   border: none;
 }
@@ -63,8 +68,8 @@ h3 {
 }
 
 .custom-input:focus {
-  background-color: #EBEBEB !important; /* Ensure the background color stays the same */
-  outline: none !important; /* Optional: Removes the outline. Consider accessibility! */
+  background-color: #EBEBEB !important;
+  outline: none !important;
 }
 
 .custom-input::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
@@ -86,4 +91,19 @@ h3 {
 
 .content-container {
   max-width: 71rem;
+}
+
+.custom-link {
+  display: block;
+  border-radius: 0 !important;
+  border: none !important;
+  color: black !important;
+  text-align: left;
+  transition: background-color 0.3s;
+  line-height: 1.07rem;
+}
+
+.custom-link.active {
+  background-color: #CCCBFD !important;
+  color: white !important;
 }

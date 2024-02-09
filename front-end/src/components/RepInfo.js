@@ -91,19 +91,19 @@ function RepInfo() {
                                 <div className="tab-pane fade show active mt-5" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                                     <Profile profile={data.representativeInfo}  info={data.proPublicaInfo} photo={data.repPhoto.imageUrl} />
                                 </div>
-                                <div className="tab-pane fade" id="finances" role="tabpanel" aria-labelledby="finances-tab">
+                                <div className="tab-pane fade mt-5" id="finances" role="tabpanel" aria-labelledby="finances-tab">
                                     <ContributionsTable contributions={data.repContribData} summary={data.repContribSummary} />
                                 </div>
-                                <div className="tab-pane fade" id="voting-info" role="tabpanel" aria-labelledby="voting-info-tab">
+                                <div className="tab-pane fade mt-5" id="voting-info" role="tabpanel" aria-labelledby="voting-info-tab">
                                     <VotingInfo info={data.proPublicaInfo} />
                                 </div>
-                                <div className="tab-pane fade" id="sponsored-bills" role="tabpanel" aria-labelledby="sponsored-bills-tab">
+                                <div className="tab-pane fade mt-5" id="sponsored-bills" role="tabpanel" aria-labelledby="sponsored-bills-tab">
                                     <SponsoredBills sponsoredBills={data.repSponsoredBills} />
                                 </div>
-                                <div className="tab-pane fade" id="statements" role="tabpanel" aria-labelledby="statements-tab">
+                                <div className="tab-pane fade mt-5" id="statements" role="tabpanel" aria-labelledby="statements-tab">
                                     <Statements statements={data.repStatements} />
                                 </div>
-                                <div className="tab-pane fade" id="news" role="tabpanel" aria-labelledby="news-tab">
+                                <div className="tab-pane fade mt-5" id="news" role="tabpanel" aria-labelledby="news-tab">
                                     <News news={data.news} />
                                 </div>
                             </div>
