@@ -6,11 +6,10 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 function App() {
   return (
     <BrowserRouter>
-      <Nav />
+      {/* <Nav /> */}
       <Routes>
-        <Route path="/" element={<div>Home</div>} />
-        <Route path="/search" element={<GetRepByAddressForm />} />
-        <Route path="/hello" element={<div>Hello</div>} />
+        <Route path="/" element={<GetRepByAddressForm />} />
+        {/* <Route path="/hello" element={<div>About</div>} /> */}
       </Routes>
     </BrowserRouter>
   );

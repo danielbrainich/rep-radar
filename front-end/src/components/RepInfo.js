@@ -3,7 +3,6 @@ import fetchRepData from '../api/fetchRepData';
 import AddressForm from './AddressForm';
 import Profile from './Profile';
 import ContributionsTable from './Finances';
-import CongressGovPhoto from './CongressGovPhoto';
 import SponsoredBills from './Bills';
 import Statements from './Statements';
 import News from './News';
@@ -11,6 +10,7 @@ import VotingInfo from './Voting';
 
 function RepInfo() {
     const [isFormSubmitted, setIsFormSubmitted] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
     const [data, setData] = useState({
         representativeInfo: {},
         repContribData: {},
@@ -23,28 +23,51 @@ function RepInfo() {
     });
 
     const handleFormSubmit = async (formData) => {
-        const fetchedData = await fetchRepData(formData);
-        setData(fetchedData);
-        setIsFormSubmitted(true);
+        setIsLoading(true);
+        try {
+            const fetchedData = await fetchRepData(formData);
+            console.log("fetchedData", fetchedData);
+            setData(fetchedData);
+            setIsFormSubmitted(true);
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        } finally {
+            setIsLoading(false);
+        }
     };
 
-    const handleClick = async () => {
+    const handleClick = () => {
         setIsFormSubmitted(false);
-    }
+    };
 
     return (
         <>
-            {!isFormSubmitted &&
-                <div className="container vh-100">
-                    <div className="row vh-100">
-                        <div className="col-md-3">
+            {!isFormSubmitted && !isLoading && (
+                <div className="container vh-100 d-flex align-items-center justify-content-center">
+                    <div className="row justify-content-center">
+                        <div className="col-11 col-sm-10 col-md-8 col-lg-6 col-xl-5">
+                            <div className="content-container">
+                                <h1 className="text-center">RepRadar</h1>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                            </div>
                             <AddressForm onSubmit={handleFormSubmit} />
                         </div>
                     </div>
                 </div>
-            }
+            )}
 
-            {isFormSubmitted && (
+            {isLoading && (
+                <div className="container vh-100">
+                    <div className="row vh-100">
+                        <div className="col text-center">
+                            <div className="mb-2">Gathering info...</div>
+                            <div className="spinner-grow text-primary" role="status"></div>
+                        </div>
+                    </div>
+                </div>
+            )}
+
+            {isFormSubmitted && !isLoading && (
                 <div className="container">
                     <div className="row">
                         <div className="col-md-3">

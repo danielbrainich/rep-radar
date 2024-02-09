@@ -7,7 +7,7 @@ OPEN_SECRETS_API_KEY = os.getenv("OPEN_SECRETS_API_KEY")
 router = APIRouter()
 
 
-@router.get("/api/open_secrets/contributions/{cid}")
+@router.get("/api/open_secrets/contributions/{cid}/")
 async def get_rep(cid: str):
     api_url = "http://www.opensecrets.org/api/"
     params = {

@@ -24,14 +24,13 @@ function AddressForm({ onSubmit }) {
     };
 
     return (
-        <div className="d-flex flex-column align-items-center" id="address-form">
-            <h5>Search Rep by Address</h5>
+        <div className="col">
             <form onSubmit={handleSubmit}>
-                <input onChange={handleAddressChange} required placeholder='Street address' type='text' id='streetAddress' name='streetAddress' className='form-control my-2' />
-                <input onChange={handleAddressChange} required placeholder='City' type='text' id='city' name='city' className='form-control my-2' />
+                <input onChange={handleAddressChange} required placeholder='Street address' type='text' id='streetAddress' name='streetAddress' className='form-control my-2 custom-input' />
+                <input onChange={handleAddressChange} required placeholder='City' type='text' id='city' name='city' className='form-control my-2 custom-input' />
                 <div>
-                    <select id="stateDropdown" onChange={handleAddressChange} className='form-control my-2'>
-                        <option value="">-- Select State --</option>
+                    <select id="stateDropdown" onChange={handleAddressChange} className='form-control my-2 custom-input'>
+                        <option value="">State</option>
                         {statesData.map((state) => (
                             <option key={state.code} value={state.code}>
                                 {state.name}
@@ -39,8 +38,10 @@ function AddressForm({ onSubmit }) {
                         ))}
                     </select>
                 </div>
-                <input onChange={handleAddressChange} required placeholder='Zip code' type='text' id='zipCode' name='zipCode' className='form-control my-2' />
-                <button className="btn btn-primary my-2">Search</button>
+                <input onChange={handleAddressChange} required placeholder='Zip code' type='text' id='zipCode' name='zipCode' className='form-control my-2 custom-input' />
+                <div className="d-grid gap-2">
+                    <button type="submit" className="btn btn-primary form-control square-edge mt-4">Find my rep</button>
+                </div>
             </form>
         </div>
     );

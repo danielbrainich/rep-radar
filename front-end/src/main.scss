@@ -3,7 +3,7 @@
 
 // Include any default variable overrides here (though functions won't be available)
 
-$primary: purple;
+$primary: #CCCBFD;
 
 @import "../node_modules/bootstrap/scss/bootstrap";
 
@@ -11,26 +11,29 @@ $primary: purple;
 
 .rep-content-container {
   border-radius: 10px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2), 0 4px 8px rgba(0, 0, 0, 0.15), 0 8px 16px rgba(0, 0, 0, 0.1);
-  transition: box-shadow 0.3s;
+  background-color: white;
 }
 
 body {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Raleway', sans-serif;
+  background-color: #FFFAF6;
 }
 
 h1 {
-  font-family: 'Roboto Slab', serif;;
+  font-family: 'Ultra', serif;
+  font-size: 4.65rem;
 }
 
 h2 {
-  font-family: 'Roboto Slab', serif;
-  font-size: 1.75rem;
+  font-family: 'Ultra', serif;
+  font-size: 2rem;
+  font-weight: 700;
 }
 
 h3 {
-  font-family: 'Roboto Slab', serif;
-  font-size: 1.25rem;
+  font-family: 'Ultra', serif;
+  font-weight: 700;
+  font-size: 1.5rem;
 }
 
 .card {
@@ -47,4 +50,37 @@ h3 {
 
 .custom-nav .custom-link.active {
   color: black;
+}
+
+.custom-input {
+  border-radius: 0 !important;
+  border: none !important;
+  background-color: #EBEBEB;
+  color: black !important;
+}
+
+.custom-input:focus {
+  background-color: #EBEBEB !important; /* Ensure the background color stays the same */
+  outline: none !important; /* Optional: Removes the outline. Consider accessibility! */
+}
+
+.custom-input::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: black;
+  opacity: 1; /* Firefox */
+}
+
+.custom-input:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: black;
+}
+
+.custom-input::-ms-input-placeholder { /* Microsoft Edge */
+  color: black;
+}
+
+.square-edge {
+  border-radius: 0 !important;
+}
+
+.content-container {
+  max-width: 70rem;
 }
