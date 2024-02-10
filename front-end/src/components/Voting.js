@@ -1,12 +1,13 @@
 
-function Voting({ info }) {
+function Voting({ info, name }) {
     return (
         <>
             {info && (
                 <div className="col">
                         <h3 className="text-center pb-2">Voting</h3>
                         <p>
-                            Transparency in campaign finance is essential for democratic integrity.
+                            The following is a high-level voting summary for Rep. {name} for her entire tenure in Congress. More voting info is coming to this site soon! This info comes
+                            from <a href="https://www.propublica.org/" target="_blank" rel="noopener noreferrer">ProPublica</a>.
                         </p>
 
                     <hr className="pb-2"/>

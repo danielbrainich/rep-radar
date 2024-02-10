@@ -1,12 +1,12 @@
 
-function Bills({ sponsoredBills }) {
+function Bills({ sponsoredBills, name }) {
     return (
 <div className="col">
         <h3 className="text-center pb-2">Bills</h3>
         <p>
-            Representatives sponsor bills to introduce or amend laws, reflecting the interests of their constituents. This process involves drafting, gaining support, and navigating the bill through
-            legislative hurdles to become law. It can showcase a lawmaker's priorities and effectiveness. Your representative has sponsored a total of {sponsoredBills.count} bills. These are
-            the {sponsoredBills.sponsoredLegislation.length} most recent:
+            Reps sponsor bills to introduce or amend laws. The process involves drafting, gaining support, and navigating the bill through
+            legislative hurdles to become law. It can demonstrate a lawmaker's priorities and political skill. Rep. {name} has sponsored a total of {sponsoredBills.count} bills since joining Congress.
+            Below are the {sponsoredBills.sponsoredLegislation.length} most recent. This info comes from <a href="https://www.congress.gov/" target="_blank" rel="noopener noreferrer">Congress.gov</a>.
         </p>
 
     <hr className="pb-2"/>

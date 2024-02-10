@@ -6,7 +6,7 @@ import json
 
 CONGRESS_GOV_API_KEY = os.getenv("CONGRESS_GOV_API_KEY")
 router = APIRouter()
-redis = Redis(host='localhost', port=6379, db=0, decode_responses=True)
+redis = Redis(host="localhost", port=6379, db=0, decode_responses=True)
 
 
 @router.get("/api/congress_gov/bills/{bioId}")
@@ -17,7 +17,7 @@ async def get_representative(bioId: str):
     if cached_data:
         return json.loads(cached_data)
 
-    api_url = f'https://api.congress.gov/v3/member/{bioId}/sponsored-legislation?api_key={CONGRESS_GOV_API_KEY}'
+    api_url = f"https://api.congress.gov/v3/member/{bioId}/sponsored-legislation?api_key={CONGRESS_GOV_API_KEY}"
 
     try:
         response = requests.get(api_url)

@@ -28,19 +28,23 @@ function AddressForm({ onSubmit }) {
             <form onSubmit={handleSubmit}>
                 <input onChange={handleAddressChange} required placeholder='Street address' type='text' id='streetAddress' name='streetAddress' className='form-control my-2 custom-input' />
                 <input onChange={handleAddressChange} required placeholder='City' type='text' id='city' name='city' className='form-control my-2 custom-input' />
-                <div>
-                    <select id="stateDropdown" onChange={handleAddressChange} className='form-control my-2 custom-input'>
-                        <option value="">State</option>
-                        {statesData.map((state) => (
-                            <option key={state.code} value={state.code}>
-                                {state.name}
-                            </option>
-                        ))}
-                    </select>
+                <div className="row g-2 mb-3">
+                    <div className="col-md">
+                        <select id="stateDropdown" onChange={handleAddressChange} className='form-control custom-input'>
+                            <option value="">State</option>
+                            {statesData.map((state) => (
+                                <option key={state.code} value={state.code}>
+                                    {state.name}
+                                </option>
+                            ))}
+                        </select>
+                    </div>
+                    <div className="col-md">
+                        <input onChange={handleAddressChange} required placeholder='Zip code' type='text' id='zipCode' name='zipCode' className='form-control custom-input' />
+                    </div>
                 </div>
-                <input onChange={handleAddressChange} required placeholder='Zip code' type='text' id='zipCode' name='zipCode' className='form-control my-2 custom-input' />
                 <div className="d-grid gap-2">
-                    <button type="submit" className="btn btn-primary form-control square-edge mt-4">Find my rep</button>
+                    <button type="submit" className="btn btn-secondary form-control mt-1 mb-4">Find my rep</button>
                 </div>
             </form>
         </div>

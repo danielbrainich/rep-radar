@@ -6,7 +6,7 @@ import json
 
 PRO_PUBLICA_API_KEY = os.getenv("PRO_PUBLICA_API_KEY")
 router = APIRouter()
-redis = Redis(host='localhost', port=6379, db=0, decode_responses=True)
+redis = Redis(host="localhost", port=6379, db=0, decode_responses=True)
 
 
 @router.get("/api/pro_publica/statements/{id}")
@@ -18,7 +18,7 @@ async def get_statements(id: str):
     if cached_data:
         return json.loads(cached_data)
 
-    api_url = f'https://api.propublica.org/congress/v1/members/{id}/statements/{congress}.json'
+    api_url = f"https://api.propublica.org/congress/v1/members/{id}/statements/{congress}.json"
 
     headers = {
         "X-API-Key": PRO_PUBLICA_API_KEY,

@@ -20,7 +20,7 @@ const fetchRepData = async (formData) => {
     const statements = await getProPublicaStatements(proPubInfo.id);
     const news = await getNewsApiData(repData.representative.name);
 
-    return {
+    const allRepData =  {
         representativeInfo: repData,
         repContribData: contribData.contributions,
         repContribSummary: contribSummary.summary,
@@ -30,6 +30,8 @@ const fetchRepData = async (formData) => {
         repStatements: statements,
         news: news,
     };
+    console.log("All Rep Data:", allRepData)
+    return allRepData
 };
 
 export default fetchRepData;

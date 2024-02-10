@@ -1,12 +1,12 @@
-function Finances({ contributions, summary }) {
+function Finances({ contributions, summary, name }) {
     return (
         <>
             {summary && contributions && (
                 <div className="col">
                     <h3 className="text-center pb-2">Finances</h3>
                     <p>
-                        Transparency in campaign finance is essential for democratic integrity. The <a href="https://www.fec.gov" target="_blank">Federal Election Commission (FEC)</a> enforces campaign finance laws, including laws around disclosure. This summary for Rep. REP_NAME_HERE for the {contributions.cycle} election cycle, sourced
-                        from <a href="https://www.opensecrets.org" target="_blank">OpenSecrets</a>, provides insights into campaign contributions and expenditures.
+                        Follow the money! Transparency in campaign finance is essential for democratic integrity. The info below shows campaign finance data for Rep. {name} for the {contributions.cycle} election cycle.
+                        This info comes from <a href="https://www.opensecrets.org" target="_blank" rel="noopener noreferrer">OpenSecrets</a>.
                     </p>
 
                     <hr className="pb-2"/>

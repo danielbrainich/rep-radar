@@ -1,14 +1,14 @@
 import { getOrdinalSuffix } from "../utility";
 
-function Statements({ statements }) {
-    console.log('hello', statements);
+function Statements({ statements, name }) {
     return (
         <div className="col p-4 pb-0">
             <div className="pb-0">
                 <h2 className="text-center pb-2">Statements</h2>
                 <p>
-                Your representative has released {statements.num_results} public statements during the {getOrdinalSuffix(statements.congress)} Congress, reflecting their stance on political
-                issues, policy announcements, and responses to events. These statements are a key part of how representatives communicate with constituents.
+                Public statements reflect a rep's stance on political and policy issues. These statements are a key part of how representatives communicate with constituents.
+                Rep. {name} has released {statements.num_results} public statements during the current {getOrdinalSuffix(statements.congress)} Congress. This info comes
+                from <a href="https://www.propublica.org/" target="_blank" rel="noopener noreferrer">ProPublica</a>.
                 </p>
             </div>
 

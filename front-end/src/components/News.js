@@ -1,11 +1,12 @@
-function News({ news }) {
-    console.log('news', news);
+
+function News({ news, name}) {
 
     return (
         <div className="col p-4">
             <div>
                 <h2 className="text-center pb-2">Latest News</h2>
-                <p>The press plays a crucial role in keeping us informed about our representatives' actions in Congress, ensuring they remain accountable to their constituents. Here are the latest articles focused on your representative:</p>
+                <p>The press plays important role in keeping us informed about our our reps' actions in and out of Congress. This ensures they remain accountable to their constituents.
+                    Here are some recent news articles that mention Rep. {name}.</p>
             </div>
 
             <hr className="pb-2"/>

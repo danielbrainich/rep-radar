@@ -4,6 +4,7 @@
 // Include any default variable overrides here (though functions won't be available)
 
 $primary: #CCCBFD;
+$secondary: #D9FE96;
 
 @import "../node_modules/bootstrap/scss/bootstrap";
 
@@ -11,16 +12,15 @@ $primary: #CCCBFD;
 
 .rep-content-container {
   border-radius: 10px;
-  background-color: white;
 }
 
 body {
-  font-family: 'Raleway', sans-serif;
+  font-family: 'Roboto', sans-serif;
 }
 
 h1 {
   font-family: 'Ultra', serif;
-  font-size: 4.65rem;
+  font-size: 4.5rem;
 }
 
 @media (max-width: 500px) {
@@ -61,14 +61,12 @@ h4 {
 }
 
 .custom-input {
-  border-radius: 0 !important;
-  border: none !important;
-  background-color: #EBEBEB;
+  border-radius: 6px !important;
+  border: 1px solid black !important;
   color: black !important;
 }
 
 .custom-input:focus {
-  background-color: #EBEBEB !important;
   outline: none !important;
 }
 
@@ -83,10 +81,6 @@ h4 {
 
 .custom-input::-ms-input-placeholder { /* Microsoft Edge */
   color: black;
-}
-
-.square-edge {
-  border-radius: 0 !important;
 }
 
 .content-container {
@@ -105,8 +99,14 @@ h4 {
 
 .custom-link.active {
   background-color: #CCCBFD !important;
+  border-radius: 6px !important;
+
 }
 
 .cursor-pointer {
   cursor: pointer !important;
+}
+
+a {
+  color: black;
 }

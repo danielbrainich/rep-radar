@@ -21,7 +21,6 @@ const getProPublicaStatements = async (repId) => {
     try {
         const rawData = await fetchProPublicaStatements(repId);
         const reshapedData = reshapeProPublicaResponse(rawData);
-        console.log('proPublicaStatements:', reshapedData);
         return reshapedData;
     } catch (error) {
         console.error('Error in getProPublicaStatements:', error);
