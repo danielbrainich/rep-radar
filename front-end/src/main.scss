@@ -10,10 +10,6 @@ $secondary: #D9FE96;
 
 // Then add additional custom code here
 
-.rep-content-container {
-  border-radius: 10px;
-}
-
 body {
   font-family: 'Roboto', sans-serif;
 }
@@ -36,7 +32,7 @@ h2 {
 
 h3 {
   font-family: 'Ultra', serif;
-  font-size: 2.5rem;
+  font-size: 2.25rem;
 }
 
 h4 {
@@ -109,4 +105,14 @@ h4 {
 
 a {
   color: black;
+}
+
+.larger-text {
+  font-size: 1.25rem;
+  line-height: 1.5rem;
+}
+
+.medium-text {
+  font-size: 1.15rem;
+  line-height: 1.5rem;
 }

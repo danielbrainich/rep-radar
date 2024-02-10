@@ -3,10 +3,10 @@ function CongressGovPhoto({ info, photo }) {
     return (
         <div>
             {info && photo ? (
-                <img src={photo} alt="Loaded content" />
+                <img className="rounded" src={photo} alt={`Portrait of Rep. ${info.first_name} ${info.last_name}`}/>
             ) : (
                 <div class="spinner-grow text-primary" role="status">
-                    <span class="visually-hidden">Loading...</span>
+                    <span className="visually-hidden">Loading...</span>
                 </div>
             )}
         </div>

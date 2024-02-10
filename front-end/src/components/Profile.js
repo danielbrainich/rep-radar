@@ -26,38 +26,46 @@ function Profile({ profile, info, photo }) {
    }
    const capitalizedPossessivePronoun = possessive_pronoun.charAt(0).toUpperCase() + possessive_pronoun.slice(1);
     return (
-        <>
-            <div class="col d-flex flex-between flex-column">
-                {profile.representative && (
-                    <div className="text-center">
-                        <h3 className="card-title pb-4">{profile.representative.name}</h3>
-                        Your rep is Rep. {profile.representative.name}. {capitalizedPossessivePronoun} congressional district
-                        is {profile.representative.state}-{profile.representative.district} and {subject_pronoun} is a member of the {profile.representative.party}. Explore this site
-                        for info on {possessive_pronoun} voting record, campaign finances, sponsored bills, public statements, and more!
-                        {console.log("INFO", info)}
-                        <div className="pb-2">
-                            <CongressGovPhoto info={info} photo={photo} />
+        <div className="container d-flex flex-column vh-100">
+            <div className="row flex-grow-1 mx-md-5 px-md-5">
+                <div className="col d-flex flex-column justify-content-between">
+                    <div className="mt-md-5 pt-md-5">
+                        {photo && (
+                        <CongressGovPhoto info={info} photo={photo} />
+                        )}
+                        {profile.representative && (
+                        <div>
+                            <h3 className="card-title mt-5 mb-3">{profile.representative.name}</h3>
+                            <div className="larger-text">{profile.representative.office}</div>
+                            <div className="larger-text">{profile.representative.party}</div>
+                            <div className="larger-text">{profile.representative.state}-{profile.representative.district}</div>
+                            {profile.representative.channels && (
+                            <div className="mt-3">
+                            {profile.representative.channels.map((channel, index) => (
+                                <div className="medium-text" key={`channel-${index}`}>
+                                {`${channel.type}: `}
+                                    <a href={generateSocialMediaLink(channel)} target="_blank" rel="noopener noreferrer">
+                                        {channel.id}
+                                    </a>
+                                </div>
+                            ))}
+                            </div>
+                            )}
+                            <div className="my-4" style={{ borderBottom: '1px solid black', margin: '20px 0' }}></div>
+                                <p>
+                                Your rep is Rep. {profile.representative.name}. {capitalizedPossessivePronoun} congressional district
+                                is {profile.representative.state}-{profile.representative.district} and {subject_pronoun} is a member of the {profile.representative.party}. Explore this site
+                                for info on {possessive_pronoun} voting record, campaign finances, sponsored bills, public statements, and more!
+                            </p>
                         </div>
-                        <div>{profile.representative.office}</div>
-                        <div>{profile.representative.party}</div>
-                        <div>{profile.representative.state}-{profile.representative.district}</div>
-                        {profile.representative.channels && (
-                             <div>
-                             {profile.representative.channels.map((channel, index) => (
-                                 <div className="card-text" key={`channel-${index}`}>
-                                    {`${channel.type}: `}
-                                     <a href={generateSocialMediaLink(channel)} target="_blank" rel="noopener noreferrer">
-                                          {channel.id}
-                                     </a>
-                                 </div>
-                             ))}
-                         </div>
                         )}
                     </div>
-                )}
-                <div className="text-center mt-5">Created by <a href="https://www.danielbrainich.com" target="_blank" rel="noopener norefferer">@danielbrainich</a></div>
+                    <div className="text-center mb-4">
+                        Created by <a href="https://www.danielbrainich.com" target="_blank" rel="noopener norefferer">@danielbrainich</a>
+                    </div>
+                </div>
             </div>
-        </>
+        </div>
     );
 }
 

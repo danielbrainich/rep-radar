@@ -91,26 +91,24 @@ function RepInfo() {
                                 <AddressForm onSubmit={handleFormSubmit} />
                             </div>
                         </div>
-                        <div className="col-md-9 rep-content-container p-4 mb-2">
+                        <div className="col-md-9 rep-content-container">
                             <div className="tab-content" id="tab-content">
-                                <div className="tab-pane fade show active mt-5" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                                    <div>
-                                        <Profile profile={data.representativeInfo}  info={data.proPublicaInfo} photo={data.repPhoto.imageUrl} />
-                                    </div>
+                                <div className="tab-pane fade show active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                                    <Profile profile={data.representativeInfo}  info={data.proPublicaInfo} photo={data.repPhoto.imageUrl} />
                                 </div>
-                                <div className="tab-pane fade mt-5" id="finances" role="tabpanel" aria-labelledby="finances-tab">
+                                <div className="tab-pane fade" id="finances" role="tabpanel" aria-labelledby="finances-tab">
                                     <Finances contributions={data.repContribData} summary={data.repContribSummary} name={data.representativeInfo.representative.name}/>
                                 </div>
-                                <div className="tab-pane fade mt-5" id="voting-info" role="tabpanel" aria-labelledby="voting-info-tab">
+                                <div className="tab-pane fade" id="voting-info" role="tabpanel" aria-labelledby="voting-info-tab">
                                     <VotingInfo info={data.proPublicaInfo} name={data.representativeInfo.representative.name}/>
                                 </div>
-                                <div className="tab-pane fade mt-5" id="sponsored-bills" role="tabpanel" aria-labelledby="sponsored-bills-tab">
+                                <div className="tab-pane fade" id="sponsored-bills" role="tabpanel" aria-labelledby="sponsored-bills-tab">
                                     <SponsoredBills sponsoredBills={data.repSponsoredBills} name={data.representativeInfo.representative.name}/>
                                 </div>
-                                <div className="tab-pane fade mt-5" id="statements" role="tabpanel" aria-labelledby="statements-tab">
+                                <div className="tab-pane fade" id="statements" role="tabpanel" aria-labelledby="statements-tab">
                                     <Statements statements={data.repStatements} name={data.representativeInfo.representative.name}/>
                                 </div>
-                                <div className="tab-pane fade mt-5" id="news" role="tabpanel" aria-labelledby="news-tab">
+                                <div className="tab-pane fade" id="news" role="tabpanel" aria-labelledby="news-tab">
                                     <News news={data.news} name={data.representativeInfo.representative.name}/>
                                 </div>
                             </div>
