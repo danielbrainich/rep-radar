@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import statesData from '../statesData';
 
-function AddressForm({ onSubmit }) {
+function AddressForm({ onSubmit, text }) {
     const [formData, setFormData] = useState({
         streetAddress: '',
         city: '',
@@ -44,7 +44,7 @@ function AddressForm({ onSubmit }) {
                     </div>
                 </div>
                 <div className="d-grid gap-2">
-                    <button type="submit" className="btn btn-secondary form-control mt-1 mb-4">Find my rep</button>
+                    <button type="submit" className="btn btn-secondary form-control mt-1 mb-4">{text}</button>
                 </div>
             </form>
         </div>

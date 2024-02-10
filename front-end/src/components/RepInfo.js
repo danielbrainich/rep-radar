@@ -50,7 +50,7 @@ function RepInfo() {
                                     <h1 className="text-center">RepRadar</h1>
                                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
                                 </div>
-                                <AddressForm onSubmit={handleFormSubmit} />
+                                <AddressForm onSubmit={handleFormSubmit} text={"Find my rep"}/>
                             </div>
                         </div>
                     </div>
@@ -74,11 +74,11 @@ function RepInfo() {
             {isFormSubmitted && !isLoading && (
                 <div className="container">
                     <div className="row">
-                        <div className="col-md-3 d-flex flex-column justify-content-between vh-100">
+                        <div className="col-md-6 col-lg-3 d-flex flex-column justify-content-between vh-md-100">
                             <div className="py-5">
                                 <h2 onClick={handleClick} className="cursor-pointer text-center pb-3">RepRadar</h2>
                                 <div className="nav flex-column custom-nav" id="tab-list" role="tablist" aria-orientation="vertical">
-                                    <button className="custom-link active" id="profile-tab" data-bs-toggle="pill" data-bs-target="#profile" type="button" role="tab">Profile</button>
+                                    <button className="custom-link active" id="profile-tab" data-bs-toggle="pill" data-bs-target="#profile" type="button" role="tab">Your rep</button>
                                     <button className="custom-link" id="finances-tab" data-bs-toggle="pill" data-bs-target="#finances" type="button" role="tab">Finances</button>
                                     <button className="custom-link" id="voting-info-tab" data-bs-toggle="pill" data-bs-target="#voting-info" type="button" role="tab">Voting</button>
                                     <button className="custom-link" id="sponsored-bills-tab" data-bs-toggle="pill" data-bs-target="#sponsored-bills" type="button" role="tab">Bills</button>
@@ -88,10 +88,10 @@ function RepInfo() {
                             </div>
                             <div className="pb-4">
                             <div className="mb-5" style={{ borderBottom: '1px solid black', margin: '20px 0' }}></div>
-                                <AddressForm onSubmit={handleFormSubmit} />
+                                <AddressForm onSubmit={handleFormSubmit} text={"Find another rep"}/>
                             </div>
                         </div>
-                        <div className="col-md-9 rep-content-container">
+                        <div className="col-md-6 col-lg-9 rep-content-container">
                             <div className="tab-content" id="tab-content">
                                 <div className="tab-pane fade show active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                                     <Profile profile={data.representativeInfo}  info={data.proPublicaInfo} photo={data.repPhoto.imageUrl} />

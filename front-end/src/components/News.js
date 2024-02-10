@@ -1,20 +1,17 @@
-
-function News({ news, name}) {
-
+function News({ news, name }) {
     return (
-        <div className="col p-4">
-            <div>
-                <h2 className="text-center pb-2">Latest News</h2>
-                <p>The press plays important role in keeping us informed about our our reps' actions in and out of Congress. This ensures they remain accountable to their constituents.
-                    Here are some recent news articles that mention Rep. {name}.</p>
-            </div>
+        <div className="container d-flex flex-column vh-100">
+            <div className="row flex-grow-1 mx-lg-5 px-lg-5">
+                <div className="col d-flex flex-column justify-content-between">
+                    <div className="mt-md-5 pt-md-5">
+                        <h4 className="pb-2">News</h4>
+                        <p>The press plays an important role in keeping us informed about our reps' actions in and out of Congress. This ensures they remain accountable to their constituents.
+                            Here are some recent news articles that mention Rep. {name}.</p>
 
-            <hr className="pb-2"/>
+                        <div className="my-4" style={{ borderBottom: '1px solid black', margin: '20px 0' }}></div>
 
-            {news ? (news.news.map((article, index) => {
-                    return (
-                        <div className="card" key={`article-${index}`}>
-                            <div className="card-body">
+                        {news ? (news.news.map((article, index) => (
+                            <div  className="mt-5" key={`article-${index}`}>
                                 <table className="table table-borderless">
                                     <tbody>
                                         <tr>
@@ -39,12 +36,15 @@ function News({ news, name}) {
                                         </tr>
                                     </tbody>
                                 </table>
+                                <div className="mt-5" style={{ borderBottom: '1px solid black', margin: '20px 0' }}></div>
                             </div>
-                        <hr />
-                        </div>
-                    );
-                })
-            ) : null}
+                        ))) : null}
+                    </div>
+                    <div className="text-center mb-4">
+                        <p>Powered by <a href="https://www.yoursite.com" target="_blank" rel="noopener noreferrer">YourSite</a></p>
+                    </div>
+                </div>
+            </div>
         </div>
     );
 }

@@ -27,7 +27,7 @@ function Profile({ profile, info, photo }) {
    const capitalizedPossessivePronoun = possessive_pronoun.charAt(0).toUpperCase() + possessive_pronoun.slice(1);
     return (
         <div className="container d-flex flex-column vh-100">
-            <div className="row flex-grow-1 mx-md-5 px-md-5">
+            <div className="row flex-grow-1 mx-lg-5 px-lg-5">
                 <div className="col d-flex flex-column justify-content-between">
                     <div className="mt-md-5 pt-md-5">
                         {photo && (

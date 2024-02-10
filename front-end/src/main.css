@@ -12002,7 +12002,12 @@ h3, .h3 {
 
 h4, .h4 {
   font-family: "Ultra", serif;
-  font-size: 1.5rem;
+  font-size: 2rem;
+}
+
+h5, .h5 {
+  font-family: "Ultra", serif;
+  font-size: 1.25rem;
 }
 
 .card {
@@ -12082,6 +12087,16 @@ a {
 }
 
 .medium-text {
-  font-size: 1.15rem;
-  line-height: 1.5rem;
+  font-size: 1rem;
+  line-height: 1.25em;
+}
+
+table th,
+table td {
+  border-bottom: 1px solid black;
+}
+
+th {
+  font-weight: 400;
+  white-space: nowrap;
 }
