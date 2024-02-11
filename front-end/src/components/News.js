@@ -41,7 +41,7 @@ function News({ news, name }) {
                         ))) : null}
                     </div>
                     <div className="text-center mb-4">
-                        <p>Powered by <a href="https://www.yoursite.com" target="_blank" rel="noopener noreferrer">YourSite</a></p>
+                        Created by <a href="https://www.danielbrainich.com" target="_blank" rel="noopener norefferer">@danielbrainich</a>
                     </div>
                 </div>
             </div>

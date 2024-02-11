@@ -41,7 +41,7 @@ function Profile({ profile, info, photo }) {
                             <div className="larger-text">{profile.representative.state}-{profile.representative.district}</div>
                             {profile.representative.channels && (
                             <div className="mt-3">
-                            {profile.representative.channels.map((channel, index) => (
+                                {profile.representative.channels.map((channel, index) => (
                                 <div className="medium-text" key={`channel-${index}`}>
                                 {`${channel.type}: `}
                                     <a href={generateSocialMediaLink(channel)} target="_blank" rel="noopener noreferrer">
@@ -54,9 +54,11 @@ function Profile({ profile, info, photo }) {
                             <div className="my-4" style={{ borderBottom: '1px solid black', margin: '20px 0' }}></div>
                                 <p>
                                 Your rep is Rep. {profile.representative.name}. {capitalizedPossessivePronoun} congressional district
-                                is {profile.representative.state}-{profile.representative.district} and {subject_pronoun} is a member of the {profile.representative.party}. Explore this site
-                                for info on {possessive_pronoun} voting record, campaign finances, sponsored bills, public statements, and more!
-                            </p>
+                                is {profile.representative.state}-{profile.representative.district} and {subject_pronoun} is a member of the {profile.representative.party}.
+                                Explore this site for info on {possessive_pronoun} voting record, campaign finances, sponsored bills, public statements, and more.
+                                Head over to Rep. {info.last_name}'s official Congressional <a href={info.url} target="_blank" rel="noopener noreferrer">website</a> for
+                                contact info and more!
+                                </p>
                         </div>
                         )}
                     </div>

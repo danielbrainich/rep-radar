@@ -13,38 +13,30 @@ const fetchProPublicaMemberData = async () => {
     }
 };
 
-
-const findMatchingMember = (data, repName) => {
-    const [firstName, lastName] = repName.split(' ');
+const findMatchingMember = (data, repDistrict, repState) => {
+    console.log("DATA", data)
+    console.log("STATE", repState)
+    console.log("DISTRICT", repDistrict)
 
     let filteredMembers = data.results[0].members.filter(member =>
-        member.last_name.toLowerCase() === lastName.toLowerCase()
+        member.state.toLowerCase() === repState.toLowerCase() &&
+        Number(member.district) === Number(repDistrict)
     );
 
-    let matchingMember = null;
-
-    if (filteredMembers.length === 1) {
-        matchingMember = filteredMembers[0];
-    } else if (filteredMembers.length > 1) {
-        matchingMember = filteredMembers.find(member =>
-            member.first_name.toLowerCase() === firstName.toLowerCase()
-        );
-    }
-
-    return matchingMember;
+    return filteredMembers.length > 0 ? filteredMembers[0] : null;
 };
 
-
-const getProPublicaIds = async (repName) => {
+const getProPublicaIds = async (repDistrict, repState) => {
     try {
         const rawData = await fetchProPublicaMemberData();
-        const matchingMember = findMatchingMember(rawData, repName);
+        console.log(rawData);
+        const matchingMember = findMatchingMember(rawData, repDistrict, repState);
 
         if (matchingMember) {
             console.log('Matching member found:', matchingMember);
             return matchingMember;
         } else {
-            console.log(`No match found for ${repName}`);
+            console.log(`No match found for state: ${repState}, district: ${repDistrict}`);
             return null;
         }
     } catch (error) {

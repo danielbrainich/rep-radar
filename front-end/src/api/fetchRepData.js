@@ -14,7 +14,7 @@ const fetchRepData = async (formData) => {
     const repId = await getOpenSecretsId(repData.representative.state, repData.representative.name);
     const contribData = await getOpenSecretsContributions(repId.repId);
     const contribSummary = await getOpenSecretsSummary(repId.repId);
-    const proPubInfo = await getProPublicaIds(repData.representative.name);
+    const proPubInfo = await getProPublicaIds(repData.representative.district, repData.representative.state);
     const congressGovPhoto = await getCongressGovPhoto(proPubInfo.id);
     const sponsoredBillInfo = await getCongressGovBills(proPubInfo.id);
     const statements = await getProPublicaStatements(proPubInfo.id);

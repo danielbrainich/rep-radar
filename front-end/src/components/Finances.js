@@ -3,7 +3,7 @@ function Finances({ contributions, summary, name }) {
         <div className="container d-flex flex-column vh-100">
             <div className="row flex-grow-1 mx-lg-5 px-lg-5">
                 <div className="col d-flex flex-column justify-content-between">
-                    {summary && contributions && (
+                    {name && contributions?.cycle && summary?.cashOnHand && summary?.total && summary?.debt && summary?.spent && contributions?.contributors?.length > 0 ? (
                     <div className="mt-md-5 pt-md-5">
                         <h4 className="pb-2">Finances</h4>
                         <p>
@@ -58,11 +58,22 @@ function Finances({ contributions, summary, name }) {
                                 </table>
                             </div>
                         </div>
+                        <div className="text-center mb-4">
+                            Created by <a href="https://www.danielbrainich.com" target="_blank" rel="noopener norefferer">@danielbrainich</a>
+                        </div>
                     </div>
-                    )}
-                </div>
+                    ) : (
+                    <div className="container vh-100 d-flex align-items-center justify-content-center">
+                        <div className="row justify-content-center">
+                            <div className="col text-center">
+                                <div className="mb-2">Gathering info...</div>
+                            </div>
+                        </div>
                 <div className="text-center mb-4">
                     Created by <a href="https://www.danielbrainich.com" target="_blank" rel="noopener norefferer">@danielbrainich</a>
+                </div>
+                    </div>
+                    )}
                 </div>
             </div>
      </div>

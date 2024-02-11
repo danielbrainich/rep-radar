@@ -29,6 +29,7 @@ const reshapeCivicInfoData = (data) => {
 const getCivicInfoData = async (address) => {
     try {
         const data = await fetchCivicInfoData(`http://localhost:8000/api/civic_info/${address}`);
+        console.log(data)
         return reshapeCivicInfoData(data);
     } catch (error) {
         console.error('Error fetching data:', error);
