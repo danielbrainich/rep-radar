@@ -68,7 +68,7 @@ function Finances({ contributions, summary, name }) {
                 ) : (
                     <div className="text-center">
                         <img src="error-message.png" height="75px" alt="Error Message"></img>
-                        <div className="mb-2">Something went wrong. <br />I'm unable to load info for your rep.</div>
+                        <div className="mb-2">Something went wrong. <br />I'm unable to load financial info for your rep.</div>
                     </div>
                 )}
             </div>
