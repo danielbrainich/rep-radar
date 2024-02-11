@@ -1,11 +1,11 @@
 function Voting({ info, name }) {
 
-    const hasError = info?.error || name?.error;
+    const hasError = info?.error
 
     return (
         <div className="container d-flex flex-column vh-100">
-            <div className="row flex-grow-1 mx-lg-5 px-lg-5">
-                    {!hasError && info && name ? (
+            <div className="flex-grow-1 d-flex align-items-center justify-content-center mx-lg-5 px-lg-5">
+                    {info && name ? (
                         <div className="mt-md-5 pt-md-5">
                             <h4 className="pb-2">Voting</h4>
                             <p>
@@ -48,7 +48,8 @@ function Voting({ info, name }) {
 
                 ) : (
                     <div className="text-center">
-                        <p>Unable to load voting information. Please check back later.</p>
+                        <img src="error-message.png" height="75px" alt="Error Message"></img>
+                        <div className="mb-2">Something went wrong. <br />I'm unable to load info for your rep.</div>
                     </div>
                 )}
             </div>

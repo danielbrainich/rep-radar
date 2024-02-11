@@ -28,6 +28,9 @@ function Profile({ profile, info, photo }) {
 
    const hasError = profile?.error || info?.error;
 
+   console.log("profile", profile)
+   console.log("info", info)
+
     return (
         <div className="container d-flex flex-column vh-100">
             <div className="flex-grow-1 d-flex align-items-center justify-content-center mx-lg-5 px-lg-5">
