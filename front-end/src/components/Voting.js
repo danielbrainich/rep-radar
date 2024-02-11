@@ -10,7 +10,7 @@ function Voting({ info, name }) {
                         <div className="mt-md-5 pt-md-5">
                             <h4 className="pb-2">Voting</h4>
                             <p>
-                                The following is a high-level voting summary for Rep. {name} for her entire tenure in Congress. More voting info is coming to this site soon! This info comes
+                                The following is a high-level voting summary for Rep. {name} for your rep's entire tenure in Congress. More voting info is coming to this site soon! This info comes
                                 from <a href="https://www.propublica.org/" target="_blank" rel="noopener noreferrer">ProPublica</a>.
                             </p>
                             <div className="my-4" style={{ borderBottom: '1px solid black', margin: '20px 0' }}></div>
