@@ -1,9 +1,11 @@
 function Voting({ info, name }) {
+
+    const hasError = info?.error || name?.error;
+
     return (
         <div className="container d-flex flex-column vh-100">
             <div className="row flex-grow-1 mx-lg-5 px-lg-5">
-                <div className="col d-flex flex-column justify-content-between">
-                    {info && (
+                    {!hasError && info && name ? (
                         <div className="mt-md-5 pt-md-5">
                             <h4 className="pb-2">Voting</h4>
                             <p>
@@ -43,13 +45,17 @@ function Voting({ info, name }) {
                                 </div>
                             </div>
                         </div>
-                    )}
-                    <div className="text-center mb-4">
-                        Created by <a href="https://www.danielbrainich.com" target="_blank" rel="noopener noreferrer">@danielbrainich</a>
+
+                ) : (
+                    <div className="text-center">
+                        <p>Unable to load voting information. Please check back later.</p>
                     </div>
+                )}
+            </div>
+                <div className="text-center mb-4">
+                    Created by <a href="https://www.danielbrainich.com" target="_blank" rel="noopener noreferrer">@danielbrainich</a>
                 </div>
             </div>
-        </div>
     );
 }
 

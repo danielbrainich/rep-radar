@@ -13,61 +13,63 @@ function Profile({ profile, info, photo }) {
     };
 
    let possessive_pronoun = "their";
-   let subject_pronoun = "they";
+   let subject_pronoun = "they are";
    let object_pronoun = "them";
    if (info.gender === "F") {
        possessive_pronoun = "her";
-       subject_pronoun = "she";
+       subject_pronoun = "she is";
        object_pronoun = "her";
    } else if (info.gender === "M") {
        possessive_pronoun = "his";
-       subject_pronoun = "he";
+       subject_pronoun = "he is";
        object_pronoun = "him";
    }
    const capitalizedPossessivePronoun = possessive_pronoun.charAt(0).toUpperCase() + possessive_pronoun.slice(1);
+
+   const hasError = profile?.error || info?.error;
+
     return (
         <div className="container d-flex flex-column vh-100">
-            <div className="row flex-grow-1 mx-lg-5 px-lg-5">
-                <div className="col d-flex flex-column justify-content-between">
-                    <div className="mt-md-5 pt-md-5">
-                        {photo && (
-                        <CongressGovPhoto info={info} photo={photo} />
-                        )}
-                        {profile.representative && (
-                        <div>
-                            <h3 className="card-title mt-5 mb-3">{profile.representative.name}</h3>
-                            <div className="larger-text">{profile.representative.office}</div>
-                            <div className="larger-text">{profile.representative.party}</div>
-                            <div className="larger-text">{profile.representative.state}-{profile.representative.district}</div>
-                            {profile.representative.channels && (
-                            <div className="mt-3">
-                                {profile.representative.channels.map((channel, index) => (
-                                <div className="medium-text" key={`channel-${index}`}>
-                                {`${channel.type}: `}
-                                    <a href={generateSocialMediaLink(channel)} target="_blank" rel="noopener noreferrer">
-                                        {channel.id}
-                                    </a>
-                                </div>
-                            ))}
+            <div className="flex-grow-1 d-flex align-items-center justify-content-center mx-lg-5 px-lg-5">
+                {!hasError && profile?.representative && info ? (
+                    <div>
+                        {photo && <CongressGovPhoto info={info} photo={photo} />}
+                        <h3 className="card-title mt-5 mb-3">{profile.representative.name}</h3>
+                        <div className="larger-text">{profile.representative.office}</div>
+                        <div className="larger-text">{profile.representative.party}</div>
+                        <div className="larger-text">{profile.representative.state}-{profile.representative.district}</div>
+                        {profile.representative.channels && (
+                        <div className="mt-3">
+                            {profile.representative.channels.map((channel, index) => (
+                            <div className="medium-text" key={`channel-${index}`}>
+                            {`${channel.type}: `}
+                                <a href={generateSocialMediaLink(channel)} target="_blank" rel="noopener noreferrer">
+                                    {channel.id}
+                                </a>
                             </div>
-                            )}
-                            <div className="my-4" style={{ borderBottom: '1px solid black', margin: '20px 0' }}></div>
-                                <p>
+                            ))}
+                        </div>
+                        )}
+                        <div className="my-4" style={{ borderBottom: '1px solid black', margin: '20px 0' }}></div>
+                            <p>
                                 Your rep is Rep. {profile.representative.name}. {capitalizedPossessivePronoun} congressional district
-                                is {profile.representative.state}-{profile.representative.district} and {subject_pronoun} is a member of the {profile.representative.party}.
+                                is {profile.representative.state}-{profile.representative.district} and {subject_pronoun} a member of the {profile.representative.party}.
                                 Explore this site for info on {possessive_pronoun} voting record, campaign finances, sponsored bills, public statements, and more.
                                 Head over to Rep. {info.last_name}'s official Congressional <a href={info.url} target="_blank" rel="noopener noreferrer">website</a> for
                                 contact info and more!
-                                </p>
+                            </p>
                         </div>
-                        )}
+                    ) : (
+                    <div className="text-center">
+                        <img src="error-message.png" height="75px" alt="Error Message"></img>
+                        <div className="mb-2">Something went wrong. <br />I'm unable to load info for your rep.</div>
                     </div>
-                    <div className="text-center mb-4">
-                        Created by <a href="https://www.danielbrainich.com" target="_blank" rel="noopener norefferer">@danielbrainich</a>
-                    </div>
+                    )}
+                </div>
+                <div className="text-center mb-4">
+                    Created by <a href="https://www.danielbrainich.com" target="_blank" rel="noopener norefferer">@danielbrainich</a>
                 </div>
             </div>
-        </div>
     );
 }
 
