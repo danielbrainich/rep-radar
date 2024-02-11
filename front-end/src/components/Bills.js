@@ -6,7 +6,7 @@ function Bills({ sponsoredBills, name }) {
     return (
         <div className="container d-flex flex-column vh-100">
             <div className="flex-grow-1 d-flex align-items-center justify-content-center mx-lg-5 px-lg-5">
-                {!hasError && sponsoredBills?.sponsoredLegislation ? (
+                {!hasError && sponsoredBills?.sponsoredLegislation && name ? (
                 <div className="col d-flex flex-column justify-content-between">
                     <div className="mt-md-5 pt-md-5">
                         <h4 className="pb-2">Bills</h4>
@@ -44,14 +44,14 @@ function Bills({ sponsoredBills, name }) {
                 ) : (
                 <div className="text-center">
                     <img src="error-message.png" height="75px" alt="Error Message"></img>
-                    <div className="mb-2">Something went wrong. <br />I'm unable to load info for your rep.</div>
+                    <div className="mb-2">Something went wrong. <br />I'm unable to load your rep's sponsored bills.</div>
                 </div>
                     )}
             </div>
-                <div className="text-center mb-4">
-                    Created by <a href="https://www.danielbrainich.com" target="_blank" rel="noopener noreferrer">@danielbrainich</a>
-                </div>
+            <div className="text-center mb-4">
+                Created by <a href="https://www.danielbrainich.com" target="_blank" rel="noopener noreferrer">@danielbrainich</a>
             </div>
+        </div>
     );
 }
 

@@ -6,6 +6,7 @@ function Voting({ info, name }) {
         <div className="container d-flex flex-column vh-100">
             <div className="flex-grow-1 d-flex align-items-center justify-content-center mx-lg-5 px-lg-5">
                     {info && name ? (
+                    <div className="col d-flex flex-column justify-content-between">
                         <div className="mt-md-5 pt-md-5">
                             <h4 className="pb-2">Voting</h4>
                             <p>
@@ -14,7 +15,6 @@ function Voting({ info, name }) {
                             </p>
 
                             <div className="my-4" style={{ borderBottom: '1px solid black', margin: '20px 0' }}></div>
-
                             <div className="pb-2 d-flex flex-column">
                                 <h5 className="pb-2">Summary</h5>
                                 <div className="col">
@@ -45,7 +45,7 @@ function Voting({ info, name }) {
                                 </div>
                             </div>
                         </div>
-
+                    </div>
                 ) : (
                     <div className="text-center">
                         <img src="error-message.png" height="75px" alt="Error Message"></img>
