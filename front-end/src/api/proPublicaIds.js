@@ -20,7 +20,7 @@ const findMatchingMember = (data, repDistrict, repState) => {
 
     let filteredMembers = data.results[0].members.filter(member =>
         member.state.toLowerCase() === repState.toLowerCase() &&
-        Number(member.district) === Number(repDistrict)
+        String(member.district) === String(repDistrict)
     );
 
     return filteredMembers.length > 0 ? filteredMembers[0] : null;

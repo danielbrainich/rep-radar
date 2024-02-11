@@ -9,10 +9,16 @@ const fetchCivicInfoData = async (url) => {
 const reshapeCivicInfoData = (data) => {
 
     function extractDistrictNumber(inputString) {
-        const parts = inputString.split("cd:");
-        return parts.length === 2 ? parseInt(parts[1], 10) : null;
+        const cdSection = inputString.split("cd:");
+        if (cdSection.length === 2) {
+            return parseInt(cdSection[1], 10);
+        }
+        else if (!inputString.includes("cd:")) {
+            return "At-Large";
+        }
+        return null;
     }
-
+    console.log("districtnumber", extractDistrictNumber(data.offices[0].divisionId))
     return {
         representative: {
             name: data.officials[0].name,

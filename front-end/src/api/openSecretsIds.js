@@ -11,6 +11,7 @@ const getOpenSecretsId = async (repState, repId) => {
     console.log("reppppid", repId)
     try {
         const data = await fetchOpenSecretsIds(apiUrl);
+        console.log("OPENSECRETSIDS", data)
         for (let rep of data.response.legislator) {
             if (rep['@attributes'].bioguide_id === repId) {
                 return { 'repId': rep['@attributes'].cid };
