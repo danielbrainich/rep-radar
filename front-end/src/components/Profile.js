@@ -35,7 +35,7 @@ function Profile({ profile, info, photo }) {
         <div className="container d-flex flex-column vh-100">
             {!hasError && profile?.representative && info ? (
             <div>
-                <div className="col d-flex flex-column justify-content-between">
+                <div className="col d-flex flex-column justify-content-between mx-lg-5 px-lg-5">
                     <div className="mt-md-5 pt-md-5">
                         {photo && <CongressGovPhoto info={info} photo={photo} />}
                         <h3 className="card-title mt-5 mb-3">{profile.representative.name}</h3>

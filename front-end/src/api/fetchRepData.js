@@ -11,10 +11,10 @@ import getNewsApiData from './newsApi';
 const fetchRepData = async (formData) => {
     const address = `${formData.streetAddress} ${formData.city} ${formData.state} ${formData.zipCode}`;
     const repData = await getCivicInfoData(address);
-    const repId = await getOpenSecretsId(repData.representative.state, repData.representative.name);
-    const contribData = await getOpenSecretsContributions(repId.repId);
-    const contribSummary = await getOpenSecretsSummary(repId.repId);
     const proPubInfo = await getProPublicaIds(repData.representative.district, repData.representative.state);
+    const openSecretsId = await getOpenSecretsId(repData.representative.state, proPubInfo.id);
+    const contribData = await getOpenSecretsContributions(openSecretsId.repId);
+    const contribSummary = await getOpenSecretsSummary(openSecretsId.repId);
     const congressGovPhoto = await getCongressGovPhoto(proPubInfo.id);
     const sponsoredBillInfo = await getCongressGovBills(proPubInfo.id);
     const statements = await getProPublicaStatements(proPubInfo.id);

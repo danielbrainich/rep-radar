@@ -6,21 +6,13 @@ const fetchOpenSecretsIds = async (url) => {
     return response.json();
 };
 
-const cleanName = (repName) => {
-    const names = repName.split(' ');
-    if (names.length > 2) {
-      names.splice(1, 1);
-    }
-    return names.join(' ');
-};
-
-const getOpenSecretsId = async (repState, repName) => {
+const getOpenSecretsId = async (repState, repId) => {
     const apiUrl = `http://localhost:8000/api/open_secrets/ids/${repState}`;
+    console.log("reppppid", repId)
     try {
         const data = await fetchOpenSecretsIds(apiUrl);
-        const cleanedName = cleanName(repName);
         for (let rep of data.response.legislator) {
-            if (rep['@attributes'].firstlast === cleanedName) {
+            if (rep['@attributes'].bioguide_id === repId) {
                 return { 'repId': rep['@attributes'].cid };
             }
         }
