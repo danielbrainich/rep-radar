@@ -1,8 +1,6 @@
 from fastapi import FastAPI
 from dotenv import load_dotenv
-from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
-
 
 
 load_dotenv()
@@ -30,8 +28,6 @@ app.add_middleware(
     allow_methods=["GET"],
     allow_headers=["*"],
 )
-
-app.mount("/", StaticFiles(directory="build", html=True), name="static")
 
 setup_dependencies(app)
 
