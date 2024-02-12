@@ -1,6 +1,8 @@
 from fastapi import FastAPI
 from dotenv import load_dotenv
 from fastapi.staticfiles import StaticFiles
+from fastapi.middleware.cors import CORSMiddleware
+
 
 
 load_dotenv()
@@ -21,6 +23,14 @@ from dependencies import setup_dependencies
 
 app = FastAPI()
 
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Adjust this to your frontend URL(s) in production
+    allow_credentials=True,
+    allow_methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allow_headers=["*"],
+)
+
 app.mount("/", StaticFiles(directory="build", html=True), name="static")
 
 setup_dependencies(app)
@@ -35,3 +45,5 @@ app.include_router(congress_gov_photo.router)
 app.include_router(congress_gov_bills.router)
 app.include_router(pro_publica_ids.router)
 app.include_router(pro_publica_statements.router)
+
+# 123
