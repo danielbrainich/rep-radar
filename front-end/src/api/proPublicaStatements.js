@@ -1,6 +1,6 @@
 const fetchProPublicaStatements = async (repId) => {
     console.log("URL", process.env.REACT_APP_API_URL)
-    const apiUrl = `${process.env.REACT_APP_API_URL}/api/pro_publica/statements/${repId}`;
+    const apiUrl = `https://rep-radar-2d24b585519f.herokuapp.com/api/pro_publica/statements/${repId}`;
 
     try {
         const response = await fetch(apiUrl);

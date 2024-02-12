@@ -32,7 +32,7 @@ const reshapeOpenSecretsSummary = (data) => {
 
 const getOpenSecretsSummary = async (id) => {
     try {
-        const data = await fetchOpenSecretsData(`${process.env.REACT_APP_API_URL}/api/open_secrets/summary/${id}`);
+        const data = await fetchOpenSecretsData(`https://rep-radar-2d24b585519f.herokuapp.com/api/open_secrets/summary/${id}`);
         return reshapeOpenSecretsSummary(data);
     } catch (error) {
         console.error('Error fetching data:', error);
