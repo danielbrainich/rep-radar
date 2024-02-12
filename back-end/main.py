@@ -1,5 +1,8 @@
 from fastapi import FastAPI
+<<<<<<< HEAD
 from fastapi.middleware.cors import CORSMiddleware
+=======
+>>>>>>> 418d141ef4f0e8e0a5202ebb941f866b7a8a3414
 from dotenv import load_dotenv
 from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
@@ -26,9 +29,15 @@ app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
+<<<<<<< HEAD
     allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["GET"],
+=======
+    allow_origins=["*"],  # Adjust this to your frontend URL(s) in production
+    allow_credentials=True,
+    allow_methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+>>>>>>> 418d141ef4f0e8e0a5202ebb941f866b7a8a3414
     allow_headers=["*"],
 )
 
