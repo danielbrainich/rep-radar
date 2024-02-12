@@ -1,8 +1,4 @@
 from fastapi import FastAPI
-<<<<<<< HEAD
-from fastapi.middleware.cors import CORSMiddleware
-=======
->>>>>>> 418d141ef4f0e8e0a5202ebb941f866b7a8a3414
 from dotenv import load_dotenv
 from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
