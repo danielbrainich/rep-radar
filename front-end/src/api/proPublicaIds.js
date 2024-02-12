@@ -43,7 +43,7 @@ const getProPublicaIds = async (repDistrict, repState) => {
         console.error('Error in getProPublicaIds:', error);
         return {
             error: true,
-            message: error.message || 'An error occurred while fetching data',
+            message: error.message,
             data: null
         };
     }

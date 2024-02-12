@@ -20,7 +20,11 @@ const getOpenSecretsId = async (repState, repId) => {
         return { 'repId': null };
     } catch (error) {
         console.error('Error fetching data:', error);
-        return { 'repId': '', 'error': true, 'errorMessage': error.message };
+        return {
+            'repId': '',
+            'error': true,
+            'errorMessage': error.message
+        };
     }
 };
 
