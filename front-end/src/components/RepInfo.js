@@ -48,7 +48,9 @@ function RepInfo() {
                             <div className="col-11 col-sm-10 col-md-8 col-lg-6 col-xl-5">
                                 <div className="content-container">
                                     <h1 className="text-center">RepRadar</h1>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                                    <p>Rep Radar is a civic engagement tool that compiles and serves up info about members of the U.S. House of Representatives. Enter your
+                                        address below to find your rep and view tons of useful information about them: voting record, campaign finances, sponsored bills, public
+                                        statements, press coverage, and more. Rep Radar compiles info dynamically from multiple online resources, so the info is always up to date. Enjoy!</p>
                                 </div>
                                 <AddressForm onSubmit={handleFormSubmit} text={"Find my rep"}/>
                             </div>
