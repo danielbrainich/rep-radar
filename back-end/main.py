@@ -22,22 +22,20 @@ from dependencies import setup_dependencies
 
 app = FastAPI()
 
-ENVIRONMENT = os.getenv("ENVIRONMENT")
+ENVIRONMENT = os.getenv("ENVIRONMENT", "development")
 
-if ENVIRONMENT == "production":
-    allowed_origins = [
-        "https://main--rep-radar.netlify.app",
-    ]
-else:
-    allowed_origins = [
-        "http://localhost:3000",
-    ]
+allowed_origins = [
+    "https://main--rep-radar.netlify.app",
+]
+
+if ENVIRONMENT == "development":
+    allowed_origins.append("http://localhost:3000")
 
 app.add_middleware(
     CORSMiddleware,
     allow_origins=allowed_origins,
     allow_credentials=True,
-    allow_methods=["GET"]
+    allow_methods=["GET"],
     allow_headers=["*"],
 )
 
