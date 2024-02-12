@@ -5,8 +5,10 @@ import os
 import json
 
 PRO_PUBLICA_API_KEY = os.getenv("PRO_PUBLICA_API_KEY")
+REDIS_URL = os.getenv("REDIS_URL", "redis://localhost:6379")
+
 router = APIRouter()
-redis = Redis(host="localhost", port=6379, db=0, decode_responses=True)
+redis = Redis.from_url(REDIS_URL, decode_responses=True)
 
 
 @router.get("/api/pro_publica/ids")

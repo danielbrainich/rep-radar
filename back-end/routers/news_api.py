@@ -5,9 +5,10 @@ import os
 import json
 
 NEWS_API_API_KEY = os.getenv("NEWS_API_API_KEY")
-router = APIRouter()
+REDIS_URL = os.getenv("REDIS_URL", "redis://localhost:6379")
 
-redis = Redis(host="localhost", port=6379, db=0, decode_responses=True)
+router = APIRouter()
+redis = Redis.from_url(REDIS_URL, decode_responses=True)
 
 
 @router.get("/api/news_api/{name}")

@@ -5,8 +5,10 @@ import os
 import json
 
 OPEN_SECRETS_API_KEY = os.getenv("OPEN_SECRETS_API_KEY")
+REDIS_URL = os.getenv("REDIS_URL", "redis://localhost:6379")
+
 router = APIRouter()
-redis = Redis(host="localhost", port=6379, db=0, decode_responses=True)
+redis = Redis.from_url(REDIS_URL, decode_responses=True)
 
 
 @router.get("/api/open_secrets/summary/{id}")
