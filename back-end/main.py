@@ -22,7 +22,7 @@ from dependencies import setup_dependencies
 
 app = FastAPI()
 
-ENVIRONMENT = os.getenv("ENVIRONMENT", "development")
+ENVIRONMENT = os.getenv("ENVIRONMENT")
 
 allowed_origins = [
     "https://main--rep-radar.netlify.app",
