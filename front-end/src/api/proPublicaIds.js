@@ -14,9 +14,6 @@ const fetchProPublicaMemberData = async () => {
 };
 
 const findMatchingMember = (data, repDistrict, repState) => {
-    console.log("DATA", data)
-    console.log("STATE", repState)
-    console.log("DISTRICT", repDistrict)
 
     let filteredMembers = data.results[0].members.filter(member =>
         member.state.toLowerCase() === repState.toLowerCase() &&
@@ -32,10 +29,8 @@ const getProPublicaIds = async (repDistrict, repState) => {
         const matchingMember = findMatchingMember(rawData, repDistrict, repState);
 
         if (matchingMember) {
-            console.log('Matching member found:', matchingMember);
             return matchingMember;
         } else {
-            console.log(`No match found for state: ${repState}, district: ${repDistrict}`);
             return null;
         }
     } catch (error) {
