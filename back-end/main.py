@@ -1,5 +1,7 @@
 from fastapi import FastAPI
 from dotenv import load_dotenv
+from fastapi.staticfiles import StaticFiles
+
 
 load_dotenv()
 
@@ -18,6 +20,8 @@ from routers import (
 from dependencies import setup_dependencies
 
 app = FastAPI()
+
+app.mount("/", StaticFiles(directory="build", html=True), name="static")
 
 setup_dependencies(app)
 
