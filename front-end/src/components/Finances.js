@@ -1,8 +1,6 @@
 function Finances({ contributions, summary, name }) {
 
     const hasError = contributions?.error || summary?.error
-    console.log("contributions", contributions)
-    console.log("summary", summary)
 
     return (
         <div className="container d-flex flex-column vh-100">

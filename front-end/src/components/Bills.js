@@ -1,7 +1,6 @@
 function Bills({ sponsoredBills, name }) {
 
     const hasError = sponsoredBills.error
-    console.log("sponsoredBills",sponsoredBills)
 
     return (
         <div className="container d-flex flex-column vh-100">

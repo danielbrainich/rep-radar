@@ -3,7 +3,6 @@ import { getOrdinalSuffix } from "../utility";
 function Statements({ statements, name }) {
 
     const hasError = statements?.errors
-    console.log("statements", statements)
 
     return (
         <div className="container d-flex flex-column vh-100">

@@ -18,7 +18,7 @@ const reshapeCivicInfoData = (data) => {
         }
         return null;
     }
-    console.log("districtnumber", extractDistrictNumber(data.offices[0].divisionId))
+
     return {
         representative: {
             name: data.officials[0].name,

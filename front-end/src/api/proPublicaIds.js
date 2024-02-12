@@ -29,7 +29,6 @@ const findMatchingMember = (data, repDistrict, repState) => {
 const getProPublicaIds = async (repDistrict, repState) => {
     try {
         const rawData = await fetchProPublicaMemberData();
-        console.log(rawData);
         const matchingMember = findMatchingMember(rawData, repDistrict, repState);
 
         if (matchingMember) {

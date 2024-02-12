@@ -1,7 +1,6 @@
 function News({ news, name }) {
 
     const hasError = news.error
-    console.log("news", news)
 
     return (
         <div className="container d-flex flex-column vh-100">

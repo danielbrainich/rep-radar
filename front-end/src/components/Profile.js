@@ -28,9 +28,6 @@ function Profile({ profile, info, photo }) {
 
    const hasError = profile?.error || info?.error;
 
-   console.log("profile", profile)
-   console.log("info", info)
-
     return (
         <div className="container d-flex flex-column vh-100">
             {!hasError && profile?.representative && info ? (
