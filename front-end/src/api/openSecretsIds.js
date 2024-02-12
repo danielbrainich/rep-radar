@@ -7,7 +7,7 @@ const fetchOpenSecretsIds = async (url) => {
 };
 
 const getOpenSecretsId = async (repState, repId) => {
-    const apiUrl = `https://rep-radar-2d24b585519f.herokuapp.com/api/open_secrets/ids/${repState}`;
+    const apiUrl = `${process.env.REACT_APP_API_URL}/api/open_secrets/ids/${repState}`;
     try {
         const data = await fetchOpenSecretsIds(apiUrl);
         for (let rep of data.response.legislator) {

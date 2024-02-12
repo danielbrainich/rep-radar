@@ -34,7 +34,7 @@ const reshapeCivicInfoData = (data) => {
 
 const getCivicInfoData = async (address) => {
     try {
-        const data = await fetchCivicInfoData(`https://rep-radar-2d24b585519f.herokuapp.com/api/civic_info/${address}`);
+        const data = await fetchCivicInfoData(`${process.env.REACT_APP_API_URL}/api/civic_info/${address}`);
         return reshapeCivicInfoData(data);
     } catch (error) {
         console.error('Error fetching data:', error);

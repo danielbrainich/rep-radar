@@ -1,6 +1,6 @@
 const fetchCongressGovPhotoData = async (bioId) => {
     console.log("URL", process.env.REACT_APP_API_URL)
-    const url = `https://rep-radar-2d24b585519f.herokuapp.com/api/congress_gov/photo/${bioId}`;
+    const url = `${process.env.REACT_APP_API_URL}/api/congress_gov/photo/${bioId}`;
     const response = await fetch(url);
     if (!response.ok) {
         throw new Error(`HTTP error. Status: ${response.status}`);
