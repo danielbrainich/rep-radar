@@ -7,7 +7,7 @@ const fetchOpenSecretsIds = async (url) => {
 };
 
 const getOpenSecretsId = async (repState, repId) => {
-    const apiUrl = `http://localhost:8000/api/open_secrets/ids/${repState}`;
+    const apiUrl = `${process.env.REACT_APP_API_URL}/api/open_secrets/ids/${repState}`;
     console.log("reppppid", repId)
     try {
         const data = await fetchOpenSecretsIds(apiUrl);

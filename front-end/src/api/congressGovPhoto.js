@@ -1,5 +1,5 @@
 const fetchCongressGovPhotoData = async (bioId) => {
-    const url = `http://localhost:8000/api/congress_gov/photo/${bioId}`;
+    const url = `${process.env.REACT_APP_API_URL}/api/congress_gov/photo/${bioId}`;
     const response = await fetch(url);
     if (!response.ok) {
         throw new Error(`HTTP error. Status: ${response.status}`);

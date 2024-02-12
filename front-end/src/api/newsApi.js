@@ -14,7 +14,7 @@ const reshapeNewsApiData = (data) => {
 
 const getNewsApiData = async (name) => {
     try {
-        const data = await fetchNewsApiData(`http://localhost:8000/api/news_api/${name}`);
+        const data = await fetchNewsApiData(`${process.env.REACT_APP_API_URL}/api/news_api/${name}`);
         return reshapeNewsApiData(data);
     } catch (error) {
         console.error('Error fetching data:', error);

@@ -1,5 +1,5 @@
 const fetchProPublicaMemberData = async () => {
-    const apiUrl = `http://localhost:8000/api/pro_publica/ids`;
+    const apiUrl = `${process.env.REACT_APP_API_URL}/api/pro_publica/ids`;
 
     try {
         const response = await fetch(apiUrl);
