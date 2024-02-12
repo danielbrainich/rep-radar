@@ -14,7 +14,7 @@ const reshapeNewsApiData = (data) => {
 
 const getNewsApiData = async (name) => {
     try {
-        const data = await fetchNewsApiData(`${process.env.REACT_APP_API_URL}/api/news_api/${name}`);
+        const data = await fetchNewsApiData(`https://rep-radar-2d24b585519f.herokuapp.com/api/news_api/${name}`);
         return reshapeNewsApiData(data);
     } catch (error) {
         console.error('Error fetching data:', error);
