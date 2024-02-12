@@ -14,15 +14,12 @@ function Profile({ profile, info, photo }) {
 
    let possessive_pronoun = "their";
    let subject_pronoun = "they are";
-   let object_pronoun = "them";
    if (info.gender === "F") {
        possessive_pronoun = "her";
        subject_pronoun = "she is";
-       object_pronoun = "her";
    } else if (info.gender === "M") {
        possessive_pronoun = "his";
        subject_pronoun = "he is";
-       object_pronoun = "him";
    }
    const capitalizedPossessivePronoun = possessive_pronoun.charAt(0).toUpperCase() + possessive_pronoun.slice(1);
 
@@ -71,7 +68,7 @@ function Profile({ profile, info, photo }) {
                 </div>
                 )}
                 <div className="text-center mb-4">
-                    Created by <a href="https://www.danielbrainich.com" target="_blank" rel="noopener norefferer">@danielbrainich</a>
+                    Created by <a href="https://www.danielbrainich.com" target="_blank" rel="noopener noreferrer">@danielbrainich</a>
                 </div>
             </div>
     );

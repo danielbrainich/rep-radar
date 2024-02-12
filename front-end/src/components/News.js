@@ -53,7 +53,7 @@ function News({ news, name }) {
                 )}
             </div>
             <div className="text-center mb-4">
-                Created by <a href="https://www.danielbrainich.com" target="_blank" rel="noopener norefferer">@danielbrainich</a>
+                Created by <a href="https://www.danielbrainich.com" target="_blank" rel="noopener noreferrer">@danielbrainich</a>
             </div>
         </div>
     );
