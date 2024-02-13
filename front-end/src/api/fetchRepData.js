@@ -1,5 +1,4 @@
 import getCivicInfoData from './civicInfo';
-import getOpenSecretsId from './openSecretsIds';
 import getOpenSecretsContributions from './openSecretsContributions';
 import getOpenSecretsSummary from './openSecretsSummary';
 import getProPublicaIds from './proPublicaIds';
