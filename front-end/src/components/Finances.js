@@ -5,7 +5,7 @@ function Finances({ contributions, summary, name }) {
     return (
         <div className="container d-flex flex-column vh-100">
             <div className="flex-grow-1 d-flex align-items-center justify-content-center mx-lg-5 px-lg-5">
-                {!hasError && name && contributions?.cycle && summary?.cashOnHand && summary?.total && summary?.debt && summary?.spent && contributions?.contributors?.length > 0 ? (
+                {!hasError && name && contributions?.cycle && contributions?.contributors?.length > 0 ? (
                     <>
                         <div className="mt-md-5 pt-md-5">
                             <h4 className="pb-2">Finances</h4>
@@ -14,6 +14,7 @@ function Finances({ contributions, summary, name }) {
                                 This info comes from <a href="https://www.opensecrets.org" target="_blank" rel="noopener noreferrer">OpenSecrets</a>.
                             </p>
                             <div className="my-4" style={{ borderBottom: '1px solid black', margin: '20px 0' }}></div>
+                            {summary?.cashOnHand && summary?.total && summary?.debt && summary?.spent ? (
                             <div className="pb-2 mb-4">
                                 <h5 className="pb-2">Summary</h5>
                                 <div className="table-responsive">
@@ -39,6 +40,7 @@ function Finances({ contributions, summary, name }) {
                                     </table>
                                 </div>
                             </div>
+                            ) : null}
                             <div className="pb-2">
                                 <h5 className="pb-2">Top {contributions.contributors.length} Contributors</h5>
                                 <div className="table-responsive">
