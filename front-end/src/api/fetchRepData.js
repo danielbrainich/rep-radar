@@ -13,7 +13,7 @@ const fetchRepData = async (formData) => {
     const repData = await getCivicInfoData(address);
     const proPubInfo = await getProPublicaIds(repData.representative.district, repData.representative.state);
 
-    // Fetch data that depends on the ProPublica ID simultaneously
+    // Fetch data that depends on the ProPublica ID
     const promises = [
         getOpenSecretsId(repData.representative.state, proPubInfo.id),
         getCongressGovPhoto(proPubInfo.id),
@@ -24,7 +24,7 @@ const fetchRepData = async (formData) => {
 
     const [openSecretsId, congressGovPhoto, sponsoredBillInfo, statements, news] = await Promise.all(promises);
 
-    // Fetch OpenSecrets data simultaneously
+    // Fetch OpenSecrets data
     const openSecretsPromises = [
         getOpenSecretsContributions(openSecretsId.repId),
         getOpenSecretsSummary(openSecretsId.repId)
@@ -45,9 +45,6 @@ const fetchRepData = async (formData) => {
 
     console.log("All Rep Data:", allRepData);
     return allRepData;
-};
-
-export default fetchRepData;
 };
 
 export default fetchRepData;
