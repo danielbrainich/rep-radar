@@ -12,13 +12,25 @@ const fetchRepData = async (formData) => {
     const address = `${formData.streetAddress} ${formData.city} ${formData.state} ${formData.zipCode}`;
     const repData = await getCivicInfoData(address);
     const proPubInfo = await getProPublicaIds(repData.representative.district, repData.representative.state);
-    const openSecretsId = await getOpenSecretsId(repData.representative.state, proPubInfo.id);
-    const contribData = await getOpenSecretsContributions(openSecretsId.repId);
-    const contribSummary = await getOpenSecretsSummary(openSecretsId.repId);
-    const congressGovPhoto = await getCongressGovPhoto(proPubInfo.id);
-    const sponsoredBillInfo = await getCongressGovBills(proPubInfo.id);
-    const statements = await getProPublicaStatements(proPubInfo.id);
-    const news = await getNewsApiData(repData.representative.name);
+
+    // Fetch data that depends on the ProPublica ID simultaneously
+    const promises = [
+        getOpenSecretsId(repData.representative.state, proPubInfo.id),
+        getCongressGovPhoto(proPubInfo.id),
+        getCongressGovBills(proPubInfo.id),
+        getProPublicaStatements(proPubInfo.id),
+        getNewsApiData(repData.representative.name)
+    ];
+
+    const [openSecretsId, congressGovPhoto, sponsoredBillInfo, statements, news] = await Promise.all(promises);
+
+    // Fetch OpenSecrets data simultaneously
+    const openSecretsPromises = [
+        getOpenSecretsContributions(openSecretsId.repId),
+        getOpenSecretsSummary(openSecretsId.repId)
+    ];
+
+    const [contribData, contribSummary] = await Promise.all(openSecretsPromises);
 
     const allRepData =  {
         representativeInfo: repData,
@@ -30,8 +42,12 @@ const fetchRepData = async (formData) => {
         repStatements: statements,
         news: news,
     };
-    console.log("All Rep Data:", allRepData)
-    return allRepData
+
+    console.log("All Rep Data:", allRepData);
+    return allRepData;
+};
+
+export default fetchRepData;
 };
 
 export default fetchRepData;
