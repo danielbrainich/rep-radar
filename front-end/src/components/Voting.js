@@ -46,8 +46,8 @@ function Voting({ info, name }) {
                 ) : (
                     <div className="d-flex align-items-center justify-content-center">
                         <div className="text-center">
-                            <img src="error-message.png" height="75px" alt="Error Message"/>
-                            <div className="mb-2">Something went wrong. <br/>I'm unable to load voting info for your rep.</div>
+                            <img className="mb-2" src="error-message.png" width="50px" alt="Error Message"/>
+                            <div>Sorry, I'm unable to find voting info for your rep.</div>
                         </div>
                     </div>
                 )}

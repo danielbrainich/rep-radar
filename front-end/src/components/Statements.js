@@ -34,8 +34,8 @@ function Statements({ statements, name }) {
                 </div>
             ) : (
                 <div className="text-center">
-                    <img src="error-message.png" height="75px" alt="Error Message"></img>
-                    <div className="mb-2">Something went wrong. <br />I'm unable to load your rep's public statements.</div>
+                    <img className="mb-2" src="error-message.png" width="50px" alt="Error Message"/>
+                    <div className="mb-2">Sorry, I'm unable to find your rep's public statements.</div>
                 </div>
             )}
             </div>
