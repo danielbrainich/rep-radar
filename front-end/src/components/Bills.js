@@ -2,10 +2,13 @@ function Bills({ sponsoredBills, name }) {
 
     const hasError = sponsoredBills.error
 
+    const validBills = sponsoredBills?.sponsoredLegislation?.filter(bill => bill.type != null && bill.number != null && bill.title != null) || [];
+
+
     return (
         <div className="container d-flex flex-column vh-100">
             <div className="flex-grow-1 d-flex align-items-center justify-content-center mx-lg-5 px-lg-5">
-                {!hasError && sponsoredBills?.sponsoredLegislation && name ? (
+                {!hasError && validBills.length > 0 && name ? (
                 <div className="col d-flex flex-column justify-content-between">
                     <div className="mt-md-5 pt-md-5">
                         <h4 className="pb-2">Bills</h4>
@@ -16,7 +19,7 @@ function Bills({ sponsoredBills, name }) {
                         </p>
 
                         <div className="my-4" style={{ borderBottom: '1px solid black', margin: '20px 0' }}></div>
-                        { sponsoredBills.sponsoredLegislation.map((bill, index) => (
+                        {validBills.map((bill, index) => (
                             <div className="mt-5" key={`bill-${index}`}>
                                 <h5 className="mx-2">{`${bill.type}-${bill.number}`}</h5>
                                 <table className="table table-borderless bills-table">

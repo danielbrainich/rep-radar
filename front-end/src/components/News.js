@@ -2,6 +2,15 @@ function News({ news, name }) {
 
     const hasError = news.error
 
+    const filteredNews = news.news.filter(article => {
+        return !(article.url === "[Removed]" ||
+                 article.author === "[Removed]" ||
+                 article.title === "[Removed]" ||
+                 article.publishedAt === "[Removed]" ||
+                 article.description === "[Removed]" ||
+                 article.source?.name === "[Removed]");
+    });
+
     return (
         <div className="container d-flex flex-column vh-100">
             <div className="flex-grow-1 d-flex align-items-center justify-content-center mx-lg-5 px-lg-5">
@@ -14,7 +23,7 @@ function News({ news, name }) {
                         </p>
 
                         <div className="my-4" style={{ borderBottom: '1px solid black', margin: '20px 0' }}></div>
-                        {news.news.map((article, index) => (
+                        {filteredNews.map((article, index) => (
                             <div  className="mt-5" key={`article-${index}`}>
                                 <table className="table table-borderless">
                                     <tbody>
