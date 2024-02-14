@@ -47,6 +47,9 @@ function AddressForm({ onSubmit, text }) {
                     <button type="submit" className="btn btn-secondary form-control mt-1 mb-4">{text}</button>
                 </div>
             </form>
+            <div className="container small-text text-center">
+                Created by <a href="https://www.danielbrainich.com" target="_blank" rel="noopener noreferrer">@danielbrainich</a>
+            </div>
         </div>
     );
 }

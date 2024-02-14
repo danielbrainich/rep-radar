@@ -11982,12 +11982,12 @@ body {
 
 h1, .h1 {
   font-family: "Ultra", serif;
-  font-size: 4.5rem;
+  font-size: 4rem;
 }
 
 @media (max-width: 500px) {
   h1, .h1 {
-    font-size: 3rem;
+    font-size: 3.3rem;
   }
 }
 h2, .h2 {
@@ -12103,4 +12103,8 @@ th {
 
 .vh-95 {
   height: 95vh !important;
+}
+
+.small-text {
+  font-size: 0.85rem;
 }

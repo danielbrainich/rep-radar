@@ -45,7 +45,7 @@ function RepInfo() {
                 <div className="container vh-1 d-flex flex-column justify-content-between vh-95">
                     <div className="my-auto">
                         <div className="row justify-content-center">
-                            <div className="col-11 col-sm-10 col-md-8 col-lg-6 col-xl-5">
+                            <div className="col-11 col-sm-10 col-md-7 col-lg-5 col-xl-4">
                                 <h1 className="text-center">RepRadar</h1>
                                 <p>Rep Radar is a civic engagement tool that compiles and serves up info about members of the U.S. House of Representatives. Enter your
                                     address below to find your rep and view tons of useful information about them: voting record, campaign finances, sponsored bills, public
