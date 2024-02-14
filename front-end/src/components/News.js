@@ -61,7 +61,7 @@ function News({ news, name }) {
                 <div className="w-100 h-100 d-flex justify-content-center align-items-center">
                     <div className="text-center">
                         <img className="mb-2" src="error-message.png" width="50px" alt="Error Message"/>
-                        <div>Sorry, I'm unable to find info about your rep.</div>
+                        <div>Sorry, I'm unable to find news articles that mention your rep.</div>
                     </div>
                 </div>
                 )}
