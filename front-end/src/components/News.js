@@ -2,20 +2,23 @@ function News({ news, name }) {
 
     const hasError = news.error
 
-    const filteredNews = news.news.filter(article => {
-        return !(article.url === "[Removed]" ||
-                 article.author === "[Removed]" ||
-                 article.title === "[Removed]" ||
-                 article.publishedAt === "[Removed]" ||
-                 article.description === "[Removed]" ||
-                 article.source?.name === "[Removed]");
-    });
+    let filteredNews = [];
+    if (news.news.length > 0) {
+        filteredNews = news.news.filter(article => {
+            return !(article.url === "[Removed]" ||
+                     article.author === "[Removed]" ||
+                     article.title === "[Removed]" ||
+                     article.publishedAt === "[Removed]" ||
+                     article.description === "[Removed]" ||
+                     article.source?.name === "[Removed]");
+        });
+    }
 
     return (
-        <div className="container d-flex flex-column vh-100">
-            <div className="flex-grow-1 d-flex align-items-center justify-content-center mx-lg-5 px-lg-5">
+        <div className="container d-flex flex-column vh-95">
+            <div className="flex-grow-1 d-flex align-items-start justify-content-center mx-lg-5 px-lg-5">
                 {!hasError && news && news?.news && news.news.length > 0  && name ? (
-                <div className="col d-flex flex-column justify-content-between">
+                <div className="col d-flex flex-column justify-content-between ms-md-5">
                     <div className="mt-md-5 pt-md-5">
                         <h4 className="pb-2">News</h4>
                         <p>The press plays an important role in keeping us informed about our reps' actions in and out of Congress. This ensures they remain accountable to their constituents.
@@ -55,14 +58,13 @@ function News({ news, name }) {
                     </div>
                 </div>
                 ) : (
-                <div className="text-center">
-                    <img className="mb-2" src="error-message.png" width="50px" alt="Error Message"/>
-                    <div>Sorry, I'm unable to find news articles that mention your rep.</div>
+                <div className="w-100 h-100 d-flex justify-content-center align-items-center">
+                    <div className="text-center">
+                        <img className="mb-2" src="error-message.png" width="50px" alt="Error Message"/>
+                        <div>Sorry, I'm unable to find info about your rep.</div>
+                    </div>
                 </div>
                 )}
-            </div>
-            <div className="text-center mb-4">
-                Created by <a href="https://www.danielbrainich.com" target="_blank" rel="noopener noreferrer">@danielbrainich</a>
             </div>
         </div>
     );

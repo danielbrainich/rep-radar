@@ -42,22 +42,18 @@ function RepInfo() {
     return (
         <>
             {!isFormSubmitted && !isLoading && (
-                <div className="container vh-100 d-flex flex-column justify-content-between">
+                <div className="container vh-1 d-flex flex-column justify-content-between vh-95">
                     <div className="my-auto">
                         <div className="row justify-content-center">
                             <div className="col-11 col-sm-10 col-md-8 col-lg-6 col-xl-5">
-                                <div className="content-container">
-                                    <h1 className="text-center">RepRadar</h1>
-                                    <p>Rep Radar is a civic engagement tool that compiles and serves up info about members of the U.S. House of Representatives. Enter your
-                                        address below to find your rep and view tons of useful information about them: voting record, campaign finances, sponsored bills, public
-                                        statements, press coverage, and more. Rep Radar compiles info dynamically from multiple online resources, so the info is always up to date. Enjoy!</p>
-                                </div>
+                                <h1 className="text-center">RepRadar</h1>
+                                <p>Rep Radar is a civic engagement tool that compiles and serves up info about members of the U.S. House of Representatives. Enter your
+                                    address below to find your rep and view tons of useful information about them: voting record, campaign finances, sponsored bills, public
+                                    statements, press coverage, and more. Rep Radar compiles info dynamically from multiple online resources, so the info is always up to date. Enjoy!
+                                </p>
                                 <AddressForm onSubmit={handleFormSubmit} text={"Find my rep"}/>
                             </div>
                         </div>
-                    </div>
-                    <div className="text-center mb-4">
-                        Created by <a href="https://www.danielbrainich.com" target="_blank" rel="noopener noreferrer">@danielbrainich</a>
                     </div>
                 </div>
             )}

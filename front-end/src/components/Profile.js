@@ -26,11 +26,10 @@ function Profile({ profile, info, photo }) {
    const hasError = profile?.error || info?.error;
 
     return (
-        <div className="container d-flex flex-column vh-100">
-            <div className="flex-grow-1 d-flex align-items-center justify-content-center mx-lg-5 px-lg-5">
+        <div className="container d-flex flex-column vh-95">
+            <div className="flex-grow-1 d-flex align-items-start justify-content-center mx-lg-5 px-lg-5">
                 {!hasError && profile?.representative && info ? (
-                <div>
-                    <div className="col d-flex flex-column justify-content-between mx-lg-5 px-lg-5">
+                    <div className="col d-flex flex-column justify-content-between">
                         <div className="mt-md-5 pt-md-5">
                             {photo && <CongressGovPhoto info={info} photo={photo} />}
                             <h3 className="card-title mt-5 mb-3">{profile.representative.name}</h3>
@@ -50,27 +49,23 @@ function Profile({ profile, info, photo }) {
                             </div>
                             )}
                             <div className="my-4" style={{ borderBottom: '1px solid black', margin: '20px 0' }}></div>
-                                <p>
-                                    Your rep is Rep. {profile.representative.name}. {capitalizedPossessivePronoun} congressional district
-                                    is {profile.representative.state}-{profile.representative.district} and {subject_pronoun} a member of the {profile.representative.party}.
-                                    Explore this site for info on {possessive_pronoun} voting record, campaign finances, sponsored bills, public statements, and press coverage.
-                                    Head over to Rep. {info.last_name}'s official Congressional <a href={info.url} target="_blank" rel="noopener noreferrer">website</a> for
-                                    contact info and more!
-                                </p>
-                            </div>
+                            <p>
+                                Your rep is Rep. {profile.representative.name}. {capitalizedPossessivePronoun} congressional district
+                                is {profile.representative.state}-{profile.representative.district} and {subject_pronoun} a member of the {profile.representative.party}.
+                                Explore this site for info on {possessive_pronoun} voting record, campaign finances, sponsored bills, public statements, and press coverage.
+                                Head over to Rep. {info.last_name}'s official Congressional <a href={info.url} target="_blank" rel="noopener noreferrer">website</a> for
+                                contact info and more!
+                            </p>
                         </div>
                     </div>
-                    ) : (
-                    <div className="d-flex flex-grow-1 align-items-center justify-content-center">
-                        <div className="text-center">
+                ) : (
+                <div className="w-100 h-100 d-flex justify-content-center align-items-center">
+                    <div className="text-center">
                         <img className="mb-2" src="error-message.png" width="50px" alt="Error Message"/>
-                            <div>Sorry, I'm unable to find info about your rep.</div>
-                        </div>
+                        <div>Sorry, I'm unable to find info about your rep.</div>
                     </div>
-                    )}
                 </div>
-            <div className="text-center mb-4">
-                Created by <a href="https://www.danielbrainich.com" target="_blank" rel="noopener noreferrer">@danielbrainich</a>
+                )}
             </div>
         </div>
     );
