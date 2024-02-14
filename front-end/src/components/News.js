@@ -1,20 +1,22 @@
 function News({ news, name }) {
 
-    const hasError = news.error
+    const hasError = news.error || !name
 
-    const filteredNews = news.news.filter(article => {
-        return !(article.url === "[Removed]" ||
-                 article.author === "[Removed]" ||
-                 article.title === "[Removed]" ||
-                 article.publishedAt === "[Removed]" ||
-                 article.description === "[Removed]" ||
-                 article.source?.name === "[Removed]");
-    });
+    let filteredNews = [];
+    if (news && Array.isArray(news.news)) {
+        filteredNews = news.news.filter(article => {
+            return !(article.url === "[Removed]" ||
+                     article.author === "[Removed]" ||
+                     article.title === "[Removed]" ||
+                     article.publishedAt === "[Removed]" ||
+                     article.description === "[Removed]" ||
+                     article.source?.name === "[Removed]");
+        })};
 
     return (
-        <div className="container d-flex flex-column vh-100">
-            <div className="flex-grow-1 d-flex align-items-center justify-content-center mx-lg-5 px-lg-5">
-                {!hasError && news && news?.news && news.news.length > 0  && name ? (
+        <div className="container d-flex flex-column align-items-start flex-fill vh-90">
+            <div className="flex-grow-1 d-flex align-items-center justify-content-center mx-sm-5 px-sm-5">
+                {!hasError && filteredNews.length > 0  && name ? (
                 <div className="col d-flex flex-column justify-content-between">
                     <div className="mt-md-5 pt-md-5">
                         <h4 className="pb-2">News</h4>

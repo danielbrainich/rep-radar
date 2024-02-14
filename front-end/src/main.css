@@ -11982,10 +11982,25 @@ body {
 
 h1, .h1 {
   font-family: "Ultra", serif;
-  font-size: 4.5rem;
+  font-size: 5rem;
 }
 
-@media (max-width: 500px) {
+@media (max-width: 1400px) {
+  h1, .h1 {
+    font-size: 4.25rem;
+  }
+}
+@media (max-width: 765px) {
+  h1, .h1 {
+    font-size: 4rem;
+  }
+}
+@media (max-width: 485px) {
+  h1, .h1 {
+    font-size: 3.25rem;
+  }
+}
+@media (max-width: 400px) {
   h1, .h1 {
     font-size: 3rem;
   }
@@ -12099,4 +12114,8 @@ table td {
 th {
   font-weight: 400;
   white-space: nowrap;
+}
+
+.vh-90 {
+  height: 90vh !important;
 }

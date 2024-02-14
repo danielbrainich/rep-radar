@@ -3,8 +3,8 @@ function Voting({ info, name }) {
     const hasError = info?.error
 
     return (
-        <div className="container d-flex flex-column vh-100">
-            <div className="flex-grow-1 d-flex flex-column justify-content-center mx-lg-5 px-lg-5">
+        <div className="container d-flex flex-column align items-start flex-fill vh-90">
+            <div className="flex-grow-1 d-flex align-items-start justify-content-center mx-lg-5 px-lg-5">
                     {!hasError && info && name ? (
                     <div className="col d-flex flex-column justify-content-between">
                         <div className="mt-md-5 pt-md-5">
@@ -51,9 +51,6 @@ function Voting({ info, name }) {
                         </div>
                     </div>
                 )}
-            </div>
-            <div className="mt-auto text-center mb-4">
-                Created by <a href="https://www.danielbrainich.com" target="_blank" rel="noopener noreferrer">@danielbrainich</a>
             </div>
         </div>
     );

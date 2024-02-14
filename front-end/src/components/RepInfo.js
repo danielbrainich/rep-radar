@@ -7,6 +7,7 @@ import SponsoredBills from './Bills';
 import Statements from './Statements';
 import News from './News';
 import VotingInfo from './Voting';
+import Footer from './Footer';
 
 function RepInfo() {
     const [isFormSubmitted, setIsFormSubmitted] = useState(false);
@@ -42,23 +43,20 @@ function RepInfo() {
     return (
         <>
             {!isFormSubmitted && !isLoading && (
-                <div className="container vh-100 d-flex flex-column justify-content-between">
+                <div className="container vh-100 d-flex flex-column align-items-center">
                     <div className="my-auto">
                         <div className="row justify-content-center">
-                            <div className="col-11 col-sm-10 col-md-8 col-lg-6 col-xl-5">
-                                <div className="content-container">
-                                    <h1 className="text-center">RepRadar</h1>
-                                    <p>Rep Radar is a civic engagement tool that compiles and serves up info about members of the U.S. House of Representatives. Enter your
-                                        address below to find your rep and view tons of useful information about them: voting record, campaign finances, sponsored bills, public
-                                        statements, press coverage, and more. Rep Radar compiles info dynamically from multiple online resources, so the info is always up to date. Enjoy!</p>
-                                </div>
+                            <div className="col-11 col-sm-10 col-md-8 col-lg-6 col-xl-5 p-4">
+                                <h1 className="text-center">RepRadar</h1>
+                                <p>Rep Radar is a civic engagement tool that compiles and serves up info about members of the U.S. House of Representatives. Enter your
+                                    address below to find your rep and view tons of useful information about them: voting record, campaign finances, sponsored bills, public
+                                    statements, press coverage, and more. Rep Radar compiles info dynamically from multiple online resources, so the info is always up to date. Enjoy!
+                                </p>
                                 <AddressForm onSubmit={handleFormSubmit} text={"Find my rep"}/>
                             </div>
                         </div>
                     </div>
-                    <div className="text-center mb-4">
-                        Created by <a href="https://www.danielbrainich.com" target="_blank" rel="noopener noreferrer">@danielbrainich</a>
-                    </div>
+                    <Footer />
                 </div>
             )}
 
@@ -76,7 +74,7 @@ function RepInfo() {
             {isFormSubmitted && !isLoading && (
                 <div className="container">
                     <div className="row">
-                        <div className="col-md-6 col-lg-3 d-flex flex-column justify-content-between vh-md-100">
+                        <div className="col-md-6 col-lg-3 d-flex flex-column justify-content-between vh-md-100 mb-5">
                             <div className="py-5">
                                 <h2 onClick={handleClick} className="cursor-pointer text-center pb-3">RepRadar</h2>
                                 <div className="nav flex-column custom-nav" id="tab-list" role="tablist" aria-orientation="vertical">
@@ -93,25 +91,55 @@ function RepInfo() {
                                 <AddressForm onSubmit={handleFormSubmit} text={"Find another rep"}/>
                             </div>
                         </div>
-                        <div className="col-md-6 col-lg-9 rep-content-container">
-                            <div className="tab-content" id="tab-content">
-                                <div className="tab-pane fade show active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                                    <Profile profile={data.representativeInfo}  info={data.proPublicaInfo} photo={data.repPhoto.imageUrl} />
+                        <div className="col-md-6 col-lg-9 d-flex flex-column justify-content-start">
+                            <div className="tab-content d-flex flex-column flex-grow-1" id="tab-content">
+                                <div className="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                                    <div className="d-flex flex-column min-vh-100">
+                                        <div className="flex-grow-1">
+                                            <Profile profile={data.representativeInfo}  info={data.proPublicaInfo} photo={data.repPhoto.imageUrl} />
+                                        </div>
+                                        <Footer />
+                                    </div>
                                 </div>
                                 <div className="tab-pane fade" id="finances" role="tabpanel" aria-labelledby="finances-tab">
-                                    <Finances contributions={data.repContribData} summary={data.repContribSummary} name={data.representativeInfo.representative.name}/>
+                                    <div className="d-flex flex-column min-vh-100">
+                                        <div className="flex-grow-1">
+                                            <Finances contributions={data.repContribData} summary={data.repContribSummary} name={data.representativeInfo.representative.name}/>
+                                        </div>
+                                        <Footer />
+                                    </div>
                                 </div>
                                 <div className="tab-pane fade" id="voting-info" role="tabpanel" aria-labelledby="voting-info-tab">
-                                    <VotingInfo info={data.proPublicaInfo} name={data.representativeInfo.representative.name}/>
+                                    <div className="d-flex flex-column min-vh-100">
+                                        <div className="flex-grow-1">
+                                            <VotingInfo info={data.proPublicaInfo} name={data.representativeInfo.representative.name}/>
+                                        </div>
+                                        <Footer />
+                                    </div>
                                 </div>
                                 <div className="tab-pane fade" id="sponsored-bills" role="tabpanel" aria-labelledby="sponsored-bills-tab">
-                                    <SponsoredBills sponsoredBills={data.repSponsoredBills} name={data.representativeInfo.representative.name}/>
+                                    <div className="d-flex flex-column min-vh-100">
+                                        <div className="flex-grow-1">
+                                            <SponsoredBills sponsoredBills={data.repSponsoredBills} name={data.representativeInfo.representative.name}/>
+                                        </div>
+                                        <Footer />
+                                    </div>
                                 </div>
                                 <div className="tab-pane fade" id="statements" role="tabpanel" aria-labelledby="statements-tab">
-                                    <Statements statements={data.repStatements} name={data.representativeInfo.representative.name}/>
+                                    <div className="d-flex flex-column min-vh-100">
+                                        <div className="flex-grow-1">
+                                            <Statements statements={data.repStatements} name={data.representativeInfo.representative.name}/>
+                                        </div>
+                                        <Footer />
+                                    </div>
                                 </div>
                                 <div className="tab-pane fade" id="news" role="tabpanel" aria-labelledby="news-tab">
-                                    <News news={data.news} name={data.representativeInfo.representative.name}/>
+                                    <div className="d-flex flex-column min-vh-100">
+                                        <div className="flex-grow-1">
+                                            <News news={data.news} name={data.representativeInfo.representative.name}/>
+                                        </div>
+                                        <Footer />
+                                    </div>
                                 </div>
                             </div>
                         </div>
