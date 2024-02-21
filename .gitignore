@@ -1,5 +1,3 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-
 # dependencies
 /node_modules
 /.pnp
@@ -17,15 +15,21 @@
 .env.development.local
 .env.test.local
 .env.production.local
-
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-#confidential
+# confidential
 apiKeys.js
 api_keys.env
-.env
-.env.local
-node_modules/
-node_modules
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Node.js
+package-lock.json
+
+# Logs
+*.log
