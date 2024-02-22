@@ -27,6 +27,7 @@ api_keys.env
 __pycache__/
 *.pyc
 *.pyo
+.env
 
 # Node.js
 package-lock.json
