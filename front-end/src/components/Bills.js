@@ -1,9 +1,16 @@
 function Bills({ sponsoredBills, name }) {
 
     const hasError = sponsoredBills.error
-
     const validBills = sponsoredBills?.sponsoredLegislation?.filter(bill => bill.type != null && bill.number != null && bill.title != null) || [];
 
+    function convertDateToLongFormat(dateString) {
+        const date = new Date(dateString);
+        return date.toLocaleDateString('en-US', {
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric',
+        });
+      }
 
     return (
         <div className="container d-flex flex-column vh-95">
@@ -26,7 +33,7 @@ function Bills({ sponsoredBills, name }) {
                                     <tbody>
                                         <tr>
                                             <th scope="row">Introduced</th>
-                                            <td>{bill.introducedDate}</td>
+                                            <td>{convertDateToLongFormat(bill.introducedDate)}</td>
                                         </tr>
                                         <tr>
                                             <th scope="row no-wrap">Bill Title</th>
@@ -40,7 +47,7 @@ function Bills({ sponsoredBills, name }) {
                                 </table>
                                 <div className="mt-5" style={{ borderBottom: '1px solid black', margin: '20px 0' }}></div>
                             </div>
-                           ))}
+                        ))}
                     </div>
                 </div>
                 ) : (

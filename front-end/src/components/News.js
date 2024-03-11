@@ -2,15 +2,24 @@ function News({ news, name }) {
 
     const hasError = news.error
 
+    function convertIsoToDate(isoString) {
+        const date = new Date(isoString);
+        return date.toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        });
+    }
+
     let filteredNews = [];
     if (news.news.length > 0) {
         filteredNews = news.news.filter(article => {
             return !(article.url === "[Removed]" ||
-                     article.author === "[Removed]" ||
-                     article.title === "[Removed]" ||
-                     article.publishedAt === "[Removed]" ||
-                     article.description === "[Removed]" ||
-                     article.source?.name === "[Removed]");
+                article.author === "[Removed]" ||
+                article.title === "[Removed]" ||
+                article.publishedAt === "[Removed]" ||
+                article.description === "[Removed]" ||
+                article.source?.name === "[Removed]");
         });
     }
 
@@ -36,7 +45,7 @@ function News({ news, name }) {
                                         </tr>
                                         <tr>
                                             <th scope="row">Date</th>
-                                            <td>{article.publishedAt || 'No date available'}</td>
+                                            <td>{convertIsoToDate(article.publishedAt) || 'No date available'}</td>
                                         </tr>
                                         <tr>
                                             <th scope="row">Author</th>

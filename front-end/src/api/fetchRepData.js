@@ -12,7 +12,6 @@ const fetchRepData = async (formData) => {
     const repData = await getCivicInfoData(address);
     const proPubInfo = await getProPublicaIds(repData.representative.district, repData.representative.state);
 
-    // Combine all fetch promises into a single Promise.all call
     const allPromises = Promise.all([
         getCongressGovPhoto(proPubInfo.id),
         getCongressGovBills(proPubInfo.id),
@@ -42,7 +41,6 @@ const fetchRepData = async (formData) => {
         news: news,
     };
 
-    console.log("All Rep Data:", allRepData);
     return allRepData;
 };
 

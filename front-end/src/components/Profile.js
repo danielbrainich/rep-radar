@@ -15,11 +15,11 @@ function Profile({ profile, info, photo }) {
    let possessive_pronoun = "their";
    let subject_pronoun = "they are";
    if (info.gender === "F") {
-       possessive_pronoun = "her";
-       subject_pronoun = "she is";
+    possessive_pronoun = "her";
+    subject_pronoun = "she is";
    } else if (info.gender === "M") {
-       possessive_pronoun = "his";
-       subject_pronoun = "he is";
+    possessive_pronoun = "his";
+    subject_pronoun = "he is";
    }
    const capitalizedPossessivePronoun = possessive_pronoun.charAt(0).toUpperCase() + possessive_pronoun.slice(1);
 
